@@ -5,15 +5,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "new:page": "plop --generate-page",
+    "new:component": "plop --generate-component"
   },
   "dependencies": {
     "next": "12.0.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "styled-components": "^5.3.3",
-    "new:page": "plop --generate-page",
-    "new:component": "plop --generate-component"
   },
   "devDependencies": {
     "@types/node": "16.11.7",
