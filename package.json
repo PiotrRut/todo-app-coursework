@@ -1,0 +1,40 @@
+{
+  "name": "cc-coursework",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "12.0.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "styled-components": "^5.3.3",
+    "new:page": "plop --generate-page",
+    "new:component": "plop --generate-component"
+  },
+  "devDependencies": {
+    "@types/node": "16.11.7",
+    "@types/react": "17.0.34",
+    "eslint": "7",
+    "eslint-config-next": "12.0.3",
+    "typescript": "4.4.4",
+    "@types/styled-components": "^5.1.9",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "autoprefixer": "10.1.0",
+    "babel-eslint": "10.1.0",
+    "cssnano": "4.1.10",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-loader": "3.0.4",
+    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-react": "7.19.0",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
+    "plop": "^2.7.4",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "2.0.5",
+    "yargs": "^17.0.1"
+  }
+}
