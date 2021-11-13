@@ -6,7 +6,7 @@ The front end stack is React with Next.js :globe_with_meridians:
 
 ## Getting Started :horse_racing:
 
-After cloning to your machine, you can run `yarn` to install all necessary dependencies. Then you can run `yarn dev` to start the development server, which will start up on http://localhost:3000.
+After cloning to your machine, you can run `yarn` to install all necessary dependencies. After successfully installing dependencies, run `yarn dev` to start the development server, which will start up on http://localhost:3000.
 
 ## Generating components & pages :seedling:
 
