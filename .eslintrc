@@ -12,14 +12,14 @@
   },
   "rules": {
     "strict": 0,
-    "no-unused-vars": 0,
+    "no-unused-vars": 2,
     "@typescript-eslint/no-unused-vars": "error",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "indent": ["error", 2],
     "import/no-named-as-default": 0,
-    "simple-import-sort/sort": 1
+    "simple-import-sort/sort": 2
   },
   "settings": {
     "react": {

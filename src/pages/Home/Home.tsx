@@ -1,6 +1,6 @@
-import { NextPage } from "next";
+import { NextPage } from 'next';
 
-const IndexPage: NextPage = () => {
+const Home: NextPage = () => {
   return (
     <div>
       <p>Hello</p>
@@ -8,4 +8,4 @@ const IndexPage: NextPage = () => {
   );
 };
 
-export default IndexPage;
+export default Home;
