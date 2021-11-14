@@ -19,7 +19,7 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "indent": ["error", 2],
     "import/no-named-as-default": 0,
-    "simple-import-sort/sort": "error"
+    "simple-import-sort/sort": 1
   },
   "settings": {
     "react": {
