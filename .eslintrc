@@ -12,8 +12,8 @@
   },
   "rules": {
     "strict": 0,
-    "no-unused-vars": 2,
-    "@typescript-eslint/no-unused-vars": "error",
+    "no-unused-vars": 0,
+    "@typescript-eslint/no-unused-vars": 2,
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",

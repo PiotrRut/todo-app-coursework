@@ -1,6 +1,6 @@
-import React from 'react';
+import { useAppContext } from '@lib/contexts/app';
 import { NextPage } from 'next';
-import SEO from '@components/SEO';
+import React from 'react';
 
 import { Container, Content } from './{{pascalCase name}}.styles';
 
@@ -8,8 +8,6 @@ const {{pascalCase name}}: NextPage = () => {
 
   return (
     <Container>
-      <SEO title="{{pascalCase name}}"/>
-
       <Content>
         <p>Hello, World</p>
       </Content>
