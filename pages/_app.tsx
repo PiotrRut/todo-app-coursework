@@ -18,11 +18,13 @@ function App({ Component, pageProps, router }: AppProps) {
 
   // If not logged in go to login, otherwise go to dashboard
   useEffect(() => {
+    if (router.route !== '/') return;
+
     if (!isSignedIn) {
       router.push(AppRoutes.Login);
-    } else if (isSignedIn && router.route === '/') {
-      router.push(AppRoutes.Dashboard);
     }
+
+    router.push(AppRoutes.Dashboard);
   }, [isSignedIn]);
 
   return (
