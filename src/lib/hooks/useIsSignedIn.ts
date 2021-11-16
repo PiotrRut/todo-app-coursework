@@ -1,19 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 
 /** Returns `true` if a user is currently signed in, otherwise `false` */
 export const useIsSignedIn = () => {
-  const [isSignedIn, setIsSignedIn] = useState<boolean | undefined>(undefined);
-
   const tokenInStorage =
     typeof window !== 'undefined' && localStorage.getItem('userIdToken');
 
-  useEffect(() => {
+  const isSignedIn = useMemo(() => {
     if (!tokenInStorage) {
-      setIsSignedIn(false);
       console.error('No token in storage');
+      return false;
     } else {
-      setIsSignedIn(true);
       console.error('Token in storage');
+      return true;
     }
   }, [tokenInStorage]);
 

@@ -17,6 +17,8 @@ function App({ Component, pageProps, router }: AppProps) {
 
     if (!isSignedIn) {
       router.push(AppRoutes.Login);
+    } else if (isSignedIn && router.route === '/') {
+      router.push(AppRoutes.Dashboard);
     }
   }, [isSignedIn]);
 
