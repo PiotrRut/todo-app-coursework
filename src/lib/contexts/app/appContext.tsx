@@ -17,7 +17,7 @@ const AppContext = createContext<AppContextValues>({
 
 /** Used to access values stored in AppContext in any part of the app */
 export const useAppContext = () => useContext(AppContext);
-const NewProvider = AppContext.Provider;
+const AppProvider = AppContext.Provider;
 
 /**
  * The AppContextProvider exposes values necessary for correct functioning of the app to the whole component tree.
@@ -32,5 +32,5 @@ export const AppContextProvider: React.FunctionComponent = ({ children }) => {
 
   const values = { userIdToken, setUserIdToken };
 
-  return <NewProvider value={values}>{children}</NewProvider>;
+  return <AppProvider value={values}>{children}</AppProvider>;
 };

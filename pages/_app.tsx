@@ -5,12 +5,14 @@ import { AppRoutes } from '@lib/constants';
 import { AppContextProvider } from '@lib/contexts/app';
 import useIsSignedIn from '@lib/hooks/useIsSignedIn';
 import type { AppProps } from 'next/app';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function App({ Component, pageProps, router }: AppProps) {
+  const [isMounted, setIsMounted] = useState(false);
   const isSignedIn = useIsSignedIn();
 
   useEffect(() => {
+    setIsMounted(true);
     // Initiate axios instance
     configureAxios();
   }, []);
@@ -28,7 +30,7 @@ function App({ Component, pageProps, router }: AppProps) {
 
   return (
     <AppContextProvider>
-      <Component {...pageProps} />
+      {isMounted && <Component {...pageProps} />}
     </AppContextProvider>
   );
 }
