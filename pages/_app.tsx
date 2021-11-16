@@ -1,3 +1,4 @@
+// eslint-disable-next-line simple-import-sort/sort
 import '@theme/globals.css';
 import '@lib/axios';
 
@@ -12,11 +13,9 @@ function App({ Component, pageProps, router }: AppProps) {
 
   // If not logged in go to login, otherwise go to dashboard
   useEffect(() => {
-    if (typeof isSignedIn === 'undefined') return;
+    if (isSignedIn === undefined) return;
 
-    if (isSignedIn) {
-      router.push(AppRoutes.Dashboard);
-    } else {
+    if (!isSignedIn) {
       router.push(AppRoutes.Login);
     }
   }, [isSignedIn]);
