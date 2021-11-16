@@ -14,7 +14,7 @@ export const useAuthenticatedRoute = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (isSignedIn !== undefined && !isSignedIn) router.push(AppRoutes.Home);
+    if (!isSignedIn) router.push(AppRoutes.Login);
     return;
   }, [isSignedIn]);
 };

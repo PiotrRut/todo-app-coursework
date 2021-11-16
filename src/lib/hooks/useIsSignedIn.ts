@@ -6,6 +6,7 @@ export const useIsSignedIn = () => {
     typeof window !== 'undefined' && localStorage.getItem('userIdToken');
 
   const isSignedIn = useMemo(() => {
+    if (typeof tokenInStorage === 'undefined') return;
     if (!tokenInStorage) {
       console.error('No token in storage');
       return false;

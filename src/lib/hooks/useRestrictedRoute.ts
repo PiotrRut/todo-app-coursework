@@ -14,8 +14,7 @@ export const useRestrictedRoute = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (isSignedIn !== undefined && isSignedIn)
-      router.push(AppRoutes.Dashboard);
+    if (isSignedIn) router.push(AppRoutes.Dashboard);
     return;
   }, [isSignedIn]);
 };
