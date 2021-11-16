@@ -1,21 +1,14 @@
 import '@theme/globals.css';
+import '@lib/axios';
 
-import { configureAxios } from '@lib/axios';
 import { AppRoutes } from '@lib/constants';
 import { AppContextProvider } from '@lib/contexts/app';
 import useIsSignedIn from '@lib/hooks/useIsSignedIn';
 import type { AppProps } from 'next/app';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 function App({ Component, pageProps, router }: AppProps) {
-  const [isMounted, setIsMounted] = useState(false);
   const isSignedIn = useIsSignedIn();
-
-  useEffect(() => {
-    setIsMounted(true);
-    // Initiate axios instance
-    configureAxios();
-  }, []);
 
   // If not logged in go to login, otherwise go to dashboard
   useEffect(() => {
@@ -30,7 +23,7 @@ function App({ Component, pageProps, router }: AppProps) {
 
   return (
     <AppContextProvider>
-      {isMounted && <Component {...pageProps} />}
+      <Component {...pageProps} />
     </AppContextProvider>
   );
 }

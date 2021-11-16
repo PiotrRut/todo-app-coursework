@@ -11,6 +11,4 @@ const axios = Axios.create({
  * Starts up a custom axios instance with a base URL configured,
  * to be used for all requests via `axios-hooks`.
  */
-export const configureAxios = () => {
-  configure({ axios });
-};
+void configure({ axios });
