@@ -1,21 +1,21 @@
+import { AppRoutes } from '@lib/constants';
 import { useLocalStorage } from '@lib/hooks/useStorage';
-import React, { createContext, useContext } from 'react';
+import { useRouter } from 'next/router';
+import React, { createContext, useContext, useEffect, useMemo } from 'react';
 
-interface AppContextValues {
-  /** Currently logged in user's ID token, user for authentication */
-  userIdToken?: string;
-  /** Setter for the currently logged in user's ID token */
-  setUserIdToken: (newValue: string) => void;
-}
+import { AppContextValues } from './appContext.models';
+import { decodeToken } from './appContext.utils';
 
 const AppContext = createContext<AppContextValues>({
   userIdToken: undefined,
   setUserIdToken: () => {
     // Do nothing
   },
+  user: undefined,
+  isAppReady: undefined,
 });
 
-/** Used to access values stored in AppContext in any part of the app */
+/** Returns values stored in AppContext in any part of the app */
 export const useAppContext = () => useContext(AppContext);
 const AppProvider = AppContext.Provider;
 
@@ -25,12 +25,31 @@ const AppProvider = AppContext.Provider;
  * It also provides a `useAppContext` hook for accessing those values.
  */
 export const AppContextProvider: React.FunctionComponent = ({ children }) => {
+  const router = useRouter();
   const [userIdToken, setUserIdToken] = useLocalStorage<string | undefined>(
     'userIdToken',
     undefined
   );
 
-  const values = { userIdToken, setUserIdToken };
+  const user = useMemo(
+    () => (userIdToken ? decodeToken(userIdToken) : undefined),
+    [userIdToken]
+  );
+
+  // const isAppReady = Boolean(userIdToken && user);
+  const isAppReady = true; // for now
+
+  useEffect(() => {
+    if (router.route !== '/') return;
+
+    if (!userIdToken) router.push(AppRoutes.Login);
+
+    if (userIdToken && isAppReady) router.push(AppRoutes.Dashboard);
+
+    return;
+  }, [userIdToken, isAppReady, router.route]);
+
+  const values = { userIdToken, setUserIdToken, user, isAppReady };
 
   return <AppProvider value={values}>{children}</AppProvider>;
 };

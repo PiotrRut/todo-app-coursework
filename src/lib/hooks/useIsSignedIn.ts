@@ -7,11 +7,11 @@ export const useIsSignedIn = () => {
 
   const isSignedIn = useMemo(() => {
     if (typeof tokenInStorage === 'undefined') return;
+
     if (!tokenInStorage) {
-      console.error('No token in storage');
+      console.error('[STORAGE] No token in storage');
       return false;
     } else {
-      console.error('Token in storage');
       return true;
     }
   }, [tokenInStorage]);

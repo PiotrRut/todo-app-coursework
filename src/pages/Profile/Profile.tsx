@@ -2,16 +2,14 @@ import useAuthenticatedRoute from '@lib/hooks/useAuthenticatedRoute';
 import { NextPage } from 'next';
 import React from 'react';
 
-import { Container, Content } from './Profile.styles';
+import { Container } from './Profile.styles';
 
 const Profile: NextPage = () => {
   useAuthenticatedRoute();
 
   return (
     <Container>
-      <Content>
-        <p>Profile Page</p>
-      </Content>
+      <p>Profile Page</p>
     </Container>
   );
 };
