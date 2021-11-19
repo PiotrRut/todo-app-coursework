@@ -1,13 +1,13 @@
 export type RegisterRequestBody = {
   email: string;
-  plainTextPassword: string;
+  plaintextPassword: string;
   firstName: string;
   lastName: string;
 };
 
 export type SignInRequestBody = {
   email: string;
-  plainTextPassword: string;
+  plaintextPassword: string;
 };
 
 export type SignInResponse = {
