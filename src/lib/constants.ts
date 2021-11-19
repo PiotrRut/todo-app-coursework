@@ -4,3 +4,8 @@ export enum AppRoutes {
   Dashboard = '/dashboard',
   Home = '/',
 }
+
+export enum ApiRoutes {
+  Login = '/auth/login',
+  SignUp = '/auth/register',
+}

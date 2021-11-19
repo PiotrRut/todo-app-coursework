@@ -1,10 +1,9 @@
 import { AppRoutes } from '@lib/constants';
 import { useLocalStorage } from '@lib/hooks/useStorage';
 import { useRouter } from 'next/router';
-import React, { createContext, useContext, useEffect, useMemo } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 
-import { AppContextValues } from './appContext.models';
-import { decodeToken } from './appContext.utils';
+import { AppContextValues, User } from './appContext.models';
 
 const AppContext = createContext<AppContextValues>({
   userIdToken: undefined,
@@ -12,6 +11,9 @@ const AppContext = createContext<AppContextValues>({
     // Do nothing
   },
   user: undefined,
+  setUser: () => {
+    // Do nothing
+  },
   isAppReady: undefined,
 });
 
@@ -30,11 +32,7 @@ export const AppContextProvider: React.FunctionComponent = ({ children }) => {
     'userIdToken',
     undefined
   );
-
-  const user = useMemo(
-    () => (userIdToken ? decodeToken(userIdToken) : undefined),
-    [userIdToken]
-  );
+  const [user, setUser] = useLocalStorage<User | undefined>('user', undefined);
 
   // const isAppReady = Boolean(userIdToken && user);
   const isAppReady = true; // for now
@@ -49,7 +47,7 @@ export const AppContextProvider: React.FunctionComponent = ({ children }) => {
     return;
   }, [userIdToken, isAppReady, router.route]);
 
-  const values = { userIdToken, setUserIdToken, user, isAppReady };
+  const values = { userIdToken, setUserIdToken, user, isAppReady, setUser };
 
   return <AppProvider value={values}>{children}</AppProvider>;
 };
