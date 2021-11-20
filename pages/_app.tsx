@@ -1,5 +1,6 @@
 import '@lib/axios';
 
+import Toast from '@components/Toast';
 import { AppContextProvider } from '@lib/contexts/app';
 import GlobalStyle from '@theme/globalStyles';
 import type { AppProps } from 'next/app';
@@ -15,6 +16,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <AppContextProvider>
       <GlobalStyle />
+      <Toast />
       {mounted && <Component {...pageProps} />}
     </AppContextProvider>
   );

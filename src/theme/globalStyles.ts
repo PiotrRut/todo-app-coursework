@@ -24,7 +24,6 @@ export const styles = css`
   }
 
   a {
-    color: inherit;
     text-decoration: none;
   }
 
