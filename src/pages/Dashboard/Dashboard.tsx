@@ -13,7 +13,7 @@ const Dashboard: NextPage = () => {
   return (
     <Container>
       <button onClick={signOut}>Log out</button>
-      <p>Dashboard of ${user?.firstName}</p>
+      <p>Dashboard of {user?.firstName}</p>
     </Container>
   );
 };
