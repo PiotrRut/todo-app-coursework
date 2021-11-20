@@ -31,16 +31,29 @@ const CreateAccount: NextPage = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Form>
-          <input {...register('firstName', { required: true })} />
+          <input
+            {...register('firstName', { required: true })}
+            placeholder="First name *"
+          />
           {errors.firstName?.type === 'required' && 'First name is required'}
 
-          <input {...register('lastName', { required: true })} />
+          <input
+            {...register('lastName', { required: true })}
+            placeholder="Last name *"
+          />
           {errors.lastName && 'Last name is required'}
 
-          <input {...register('email', { required: true })} />
+          <input
+            {...register('email', { required: true })}
+            placeholder="Email address *"
+          />
           {errors.email?.type === 'required' && 'Email is required'}
 
-          <input {...register('plaintextPassword', { required: true })} />
+          <input
+            {...register('plaintextPassword', { required: true })}
+            placeholder="Password *"
+            type="password"
+          />
           {errors.plaintextPassword?.type === 'required' &&
             'Password is required'}
 

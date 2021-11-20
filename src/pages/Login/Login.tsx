@@ -28,10 +28,17 @@ const Login: NextPage = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Form>
-          <input {...register('email', { required: true })} />
+          <input
+            {...register('email', { required: true })}
+            placeholder="Email *"
+          />
           {errors.email?.type === 'required' && 'Email is required'}
 
-          <input {...register('plaintextPassword', { required: true })} />
+          <input
+            {...register('plaintextPassword', { required: true })}
+            placeholder="Password *"
+            type="password"
+          />
           {errors.plaintextPassword?.type === 'required' &&
             'Password is required'}
 
