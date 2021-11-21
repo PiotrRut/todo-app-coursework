@@ -1,7 +1,7 @@
 import Button from '@components/Button';
 import { useCreateAccount } from '@lib/auth/auth';
 import useRestrictedRoute from '@lib/hooks/useRestrictedRoute';
-import { Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import { NextPage } from 'next';
 import React from 'react';
 
@@ -26,27 +26,14 @@ const CreateAccount: NextPage = () => {
           createAccount(email, plaintextPassword, firstName, lastName)
         }
       >
-        {({ values, handleChange }) => (
+        {({ values }) => (
           <Form>
             <StyledForm>
-              <input
-                name="firstName"
-                onChange={handleChange}
-                placeholder="First name *"
-              />
-              <input
-                name="lastName"
-                onChange={handleChange}
-                placeholder="Last name *"
-              />
-              <input
-                name="email"
-                onChange={handleChange}
-                placeholder="Email address *"
-              />
-              <input
+              <Field name="firstName" placeholder="First name *" />
+              <Field name="lastName" placeholder="Last name *" />
+              <Field name="email" placeholder="Email address *" />
+              <Field
                 name="plaintextPassword"
-                onChange={handleChange}
                 placeholder="Password *"
                 type="password"
               />

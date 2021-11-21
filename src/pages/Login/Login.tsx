@@ -2,7 +2,7 @@ import Button from '@components/Button';
 import { useSignIn } from '@lib/auth/auth';
 import { AppRoutes } from '@lib/constants';
 import useRestrictedRoute from '@lib/hooks/useRestrictedRoute';
-import { Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import React from 'react';
@@ -24,11 +24,15 @@ const Login: NextPage = () => {
           signIn(email, plaintextPassword)
         }
       >
-        {({ values, handleChange }) => (
+        {({ values }) => (
           <Form>
             <StyledForm>
-              <input name="email" onChange={handleChange} />
-              <input name="plaintextPassword" onChange={handleChange} />
+              <Field name="email" placeHolder="Email address" />
+              <Field
+                name="plaintextPassword"
+                placeHolder="Password"
+                type="password"
+              />
             </StyledForm>
             <Button
               type="submit"
