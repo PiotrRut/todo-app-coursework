@@ -18,6 +18,7 @@ import {
  *
  * @returns `signIn` function which returns an axios promise
  * @returns `error` object from the axios response
+ * @returns `loading` object from the axios response
  */
 export const useSignIn = () => {
   const [{ error, loading }, login] = useAxios<
@@ -68,9 +69,10 @@ export const signOut = () => {
  *
  * @returns `createAccount` function which returns an axios promise
  * @returns `error` object from the axios response
+ * @returns `loading` object from the axios response
  */
 export const useCreateAccount = () => {
-  const [{ error }, signUp] = useAxios<undefined, RegisterRequestBody>(
+  const [{ error, loading }, signUp] = useAxios<undefined, RegisterRequestBody>(
     { url: ApiRoutes.SignUp, method: 'POST' },
     { manual: true }
   );
@@ -93,5 +95,5 @@ export const useCreateAccount = () => {
     }
   };
 
-  return { createAccount, error };
+  return { createAccount, error, loading };
 };

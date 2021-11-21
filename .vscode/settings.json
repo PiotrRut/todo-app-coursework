@@ -2,5 +2,14 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "cSpell.words": ["Cantarell", "Fira", "Neue", "seagreen", "Segoe", "toastify"]
+  "cSpell.words": [
+    "Cantarell",
+    "Fira",
+    "Neue",
+    "seagreen",
+    "Segoe",
+    "skyblue",
+    "steelblue",
+    "toastify"
+  ]
 }
