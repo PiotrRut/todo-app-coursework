@@ -23,7 +23,7 @@ const CreateAccount: NextPage = () => {
           lastName: '',
         }}
         onSubmit={({ email, plaintextPassword, firstName, lastName }) =>
-          createAccount(email, plaintextPassword, firstName, lastName)
+          createAccount(firstName, lastName, email, plaintextPassword)
         }
       >
         {({ values }) => (
