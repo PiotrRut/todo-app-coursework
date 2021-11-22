@@ -28,6 +28,7 @@ const Login: NextPage = () => {
           <Form>
             <StyledForm>
               <Field name="email" placeHolder="Email address" />
+
               <Field
                 name="plaintextPassword"
                 placeHolder="Password"
