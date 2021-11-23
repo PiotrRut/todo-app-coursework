@@ -1,7 +1,8 @@
 import Button from '@components/Button';
+import FormTextField from '@components/FormTextField';
 import { useCreateAccount } from '@lib/auth/auth';
 import useRestrictedRoute from '@lib/hooks/useRestrictedRoute';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { NextPage } from 'next';
 import React from 'react';
 
@@ -28,25 +29,18 @@ const CreateAccount: NextPage = () => {
           createAccount(firstName, lastName, email, plaintextPassword)
         }
       >
-        {({ values, errors, touched, isValid }) => (
-          <Form>
+        {({ values, isValid }) => (
+          <Form autoComplete="off">
             <StyledForm>
-              <Field name="firstName" placeholder="First name *" />
-              {errors.firstName && touched.firstName && (
-                <p>{errors.firstName}</p>
-              )}
-              <Field name="lastName" placeholder="Last name *" />
-              {errors.lastName && touched.lastName && <p>{errors.lastName}</p>}
-              <Field name="email" placeholder="Email address *" />
-              {errors.email && touched.email && <p>{errors.email}</p>}
-              <Field
+              <FormTextField name="firstName" label="First name" required />
+              <FormTextField name="lastName" label="Last name" required />
+              <FormTextField name="email" label="Email address" required />
+              <FormTextField
                 name="plaintextPassword"
-                placeholder="Password *"
+                label="Password"
                 type="password"
+                required
               />
-              {errors.plaintextPassword && touched.plaintextPassword && (
-                <p>{errors.plaintextPassword}</p>
-              )}
             </StyledForm>
             <Button
               type="submit"

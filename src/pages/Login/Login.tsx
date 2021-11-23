@@ -1,8 +1,9 @@
 import Button from '@components/Button';
+import FormTextField from '@components/FormTextField';
 import { useSignIn } from '@lib/auth/auth';
 import { AppRoutes } from '@lib/constants';
 import useRestrictedRoute from '@lib/hooks/useRestrictedRoute';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import React from 'react';
@@ -27,12 +28,17 @@ const Login: NextPage = () => {
         {({ values }) => (
           <Form>
             <StyledForm>
-              <Field name="email" placeHolder="Email address" />
+              <FormTextField
+                name="email"
+                label="Email address"
+                marginBottom={10}
+              />
 
-              <Field
+              <FormTextField
                 name="plaintextPassword"
-                placeHolder="Password"
+                label="Password"
                 type="password"
+                marginBottom={30}
               />
             </StyledForm>
             <Button

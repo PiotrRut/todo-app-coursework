@@ -2,6 +2,7 @@
  * Given an index in pixels, return the rem value
  */
 export const sizes = {
+  0: '0rem',
   1: '0.063rem',
   2: '0.125rem',
   3: '0.188rem',
