@@ -30,15 +30,26 @@ const CreateAccount: NextPage = () => {
         }
       >
         {({ values, isValid }) => (
-          <Form autoComplete="off">
+          <Form>
             <StyledForm>
-              <FormTextField name="firstName" label="First name" required />
+              <FormTextField
+                name="firstName"
+                label="First name"
+                autoFocus
+                required
+              />
               <FormTextField name="lastName" label="Last name" required />
-              <FormTextField name="email" label="Email address" required />
+              <FormTextField
+                name="email"
+                label="Email address"
+                autoComplete="new-email"
+                required
+              />
               <FormTextField
                 name="plaintextPassword"
                 label="Password"
                 type="password"
+                autoComplete="new-password"
                 required
               />
             </StyledForm>
