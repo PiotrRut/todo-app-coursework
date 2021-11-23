@@ -34,8 +34,7 @@ export const AppContextProvider: React.FunctionComponent = ({ children }) => {
   );
   const [user, setUser] = useLocalStorage<User | undefined>('user', undefined);
 
-  // const isAppReady = Boolean(userIdToken && user);
-  const isAppReady = true; // for now
+  const isAppReady = !!userIdToken && !!user;
 
   useEffect(() => {
     if (router.route !== '/') return;

@@ -27,7 +27,7 @@ export const StyledInput = styled.input<{ fullWidth?: boolean }>`
   border: none;
   font-size: ${sizes['base']};
   font-weight: normal;
-  color: black;
+  color: #f9f9f9;
 
   &:focus {
     outline: none;
@@ -65,7 +65,7 @@ export const StyledLabel = styled.label<{
   line-height: 1.4;
   transform: translateY(-50%);
   transform-origin: center left;
-  color: ${(p) => (p.error ? 'tomato' : 'black')};
+  color: ${(p) => (p.error ? 'tomato' : '#f9f9f9')};
 
   transition-property: transform, top, letter-spacing;
   transition-duration: 0.3s;

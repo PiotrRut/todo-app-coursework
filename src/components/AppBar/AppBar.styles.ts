@@ -10,5 +10,5 @@ export const AppBarContainer = styled.div`
 
   width: 100%;
   height: ${sizes[50]};
-  background-color: skyblue;
+  background-color: #3b3b3b;
 `;

@@ -5,8 +5,7 @@ export const styles = css`
   body {
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: 'Ubuntu', sans-serif;
   }
 
   body,
@@ -19,7 +18,9 @@ export const styles = css`
   blockquote,
   dl,
   dd {
+    color: #f9f9f9;
     margin: 0;
+    font-family: 'Ubuntu', sans-serif;
     font-size: 1rem;
   }
 
@@ -50,6 +51,10 @@ export const styles = css`
     height: auto;
     min-height: auto;
     flex-direction: column;
+  }
+
+  body {
+    background-color: #1b1b1b;
   }
 
   img,

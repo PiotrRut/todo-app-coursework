@@ -6,7 +6,7 @@ import { ButtonLinkContainer } from './ButtonLink.styles';
 /** A `Button` component, styled to resemble an inline link */
 const ButtonLink = forwardRef<HTMLButtonElement, ButtonLinkProps>(
   (props, ref) => {
-    const { children, color = 'black', ...rest } = props;
+    const { children, color = 'white', ...rest } = props;
 
     return (
       <ButtonLinkContainer {...{ color, ref, ...rest }}>
