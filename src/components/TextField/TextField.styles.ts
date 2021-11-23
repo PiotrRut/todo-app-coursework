@@ -25,8 +25,10 @@ export const TextFieldContainer = styled.div<{
 export const StyledInput = styled.input<{ fullWidth?: boolean }>`
   background: transparent;
   border: none;
-  font-size: ${sizes.base};
+  font-size: ${sizes['base']};
+  font-weight: normal;
   color: black;
+
   &:focus {
     outline: none;
   }

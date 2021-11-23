@@ -32,12 +32,15 @@ const Login: NextPage = () => {
                 name="email"
                 label="Email address"
                 marginBottom={10}
+                autoComplete="new-email"
+                autoFocus
               />
 
               <FormTextField
                 name="plaintextPassword"
                 label="Password"
                 type="password"
+                autoComplete="new-password"
                 marginBottom={30}
               />
             </StyledForm>
