@@ -1,4 +1,4 @@
-import Button from '@components/Button';
+import Button from '@components/buttons/Button';
 import FormTextField from '@components/FormTextField';
 import { useCreateAccount } from '@lib/auth/auth';
 import useRestrictedRoute from '@lib/hooks/useRestrictedRoute';
@@ -54,6 +54,7 @@ const CreateAccount: NextPage = () => {
               />
             </StyledForm>
             <Button
+              name="create-account"
               type="submit"
               loading={loading}
               disabled={!Object.values(values).every((v) => v) || !isValid}

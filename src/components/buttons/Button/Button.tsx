@@ -1,10 +1,10 @@
 import Spinner from '@components/Spinner';
-import React, { FunctionComponent } from 'react';
+import React, { forwardRef } from 'react';
 
 import { ButtonProps } from './Button.models';
 import { ButtonContainer } from './Button.styles';
 
-const Button: FunctionComponent<ButtonProps> = (props) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
     loading = false,
     disabled = false,
@@ -14,10 +14,10 @@ const Button: FunctionComponent<ButtonProps> = (props) => {
   } = props;
 
   return (
-    <ButtonContainer {...{ loading, disabled, fullWidth, ...rest }}>
+    <ButtonContainer {...{ loading, disabled, fullWidth, ref, ...rest }}>
       {loading ? <Spinner /> : children}
     </ButtonContainer>
   );
-};
+});
 
 export default Button;

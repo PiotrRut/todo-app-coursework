@@ -1,4 +1,4 @@
-import Button from '@components/Button';
+import Button from '@components/buttons/Button';
 import FormTextField from '@components/FormTextField';
 import { useSignIn } from '@lib/auth/auth';
 import { AppRoutes } from '@lib/constants';
@@ -45,6 +45,7 @@ const Login: NextPage = () => {
               />
             </StyledForm>
             <Button
+              name="sign-in"
               type="submit"
               loading={loading}
               disabled={!Object.values(values).every((v) => v)}
