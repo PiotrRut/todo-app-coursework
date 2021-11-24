@@ -8,12 +8,12 @@ export const palette = {
     dark: '#1b1b1b',
   },
   secondary: {
-    /** #25607c */
-    main: '#25607c',
-    /** #588dab */
-    light: '#588dab',
-    /** #003650 */
-    dark: '#003650',
+    /** #3081aa */
+    main: '#3081aa',
+    /** #68b0dc */
+    light: '#68b0dc',
+    /** #00557b */
+    dark: '#00557b',
   },
   text: {
     /** Default text color - white (#f9f9f9) */
@@ -22,5 +22,5 @@ export const palette = {
     dark: '#303030',
   },
   error: '#f44336',
-  success: '#4caf50',
+  success: '#2e7d32',
 };

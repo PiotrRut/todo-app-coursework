@@ -1,11 +1,11 @@
 import Button from '@components/buttons/Button';
 import FormTextField from '@components/FormTextField';
+import Link from '@components/Link';
 import { useSignIn } from '@lib/auth/auth';
 import { AppRoutes } from '@lib/constants';
 import useRestrictedRoute from '@lib/hooks/useRestrictedRoute';
 import { Form, Formik } from 'formik';
 import { NextPage } from 'next';
-import Link from 'next/link';
 import React from 'react';
 
 import { Container, LoginContainer, StyledForm } from './Login.styles';
