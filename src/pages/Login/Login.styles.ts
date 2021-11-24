@@ -1,3 +1,4 @@
+import { palette } from '@theme/palette';
 import { centredFlex } from '@theme/shortcuts';
 import { sizes } from '@theme/tokens';
 import styled from 'styled-components';
@@ -18,13 +19,13 @@ export const LoginContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: #3b3b3b;
+  background-color: ${palette.primary.main};
   height: ${sizes[400]};
   width: 100%;
   padding: ${sizes[50]} 0;
-  border-radius: ${sizes[10]};
 
   @media (min-width: 480px) {
+    border-radius: ${sizes[10]};
     padding: ${sizes[50]};
     width: auto;
   }

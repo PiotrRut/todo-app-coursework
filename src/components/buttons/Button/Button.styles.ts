@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+import { palette } from '@theme/palette';
 import { buttonReset, centredFlex } from '@theme/shortcuts';
 import { sizes } from '@theme/tokens';
 import styled, { css } from 'styled-components';
@@ -9,14 +11,16 @@ export const ButtonContainer = styled.button<ButtonProps>`
   ${centredFlex}
   width: ${(p) => (p.fullWidth ? '100%' : css`calc(100vw - ${sizes[40]})`)};
   height: ${sizes[50]};
-  background-color: ${(p) => (p.disabled ? 'grey' : 'skyblue')};
+  background-color: ${(p) =>
+    p.disabled ? palette.primary.light : palette.secondary.light};
   transition-property: background-color;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
   pointer-events: ${(p) => (p.disabled ? 'none' : 'auto')};
 
   &:hover {
-    background-color: ${(p) => (p.disabled ? 'grey' : 'steelblue')};
+    background-color: ${(p) =>
+      p.disabled ? palette.primary.light : palette.secondary.main};
     cursor: ${(p) => (p.disabled ? 'auto' : 'pointer')};
   }
 

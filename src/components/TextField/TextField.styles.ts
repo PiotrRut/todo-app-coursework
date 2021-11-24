@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+import { palette } from '@theme/palette';
 import { sizes } from '@theme/tokens';
 import styled, { css } from 'styled-components';
 
@@ -19,7 +21,12 @@ export const TextFieldContainer = styled.div<{
   transition: box-shadow ease 0.2s;
   transform-origin: left center;
   box-shadow: 0 ${sizes[2]} 0 0
-    ${(p) => (p.error ? 'tomato' : p.focus ? 'skyblue' : 'grey')};
+    ${(p) =>
+      p.error
+        ? palette.error
+        : p.focus
+        ? palette.secondary.light
+        : palette.primary.light};
 `;
 
 export const StyledInput = styled.input<{ fullWidth?: boolean }>`
@@ -27,7 +34,7 @@ export const StyledInput = styled.input<{ fullWidth?: boolean }>`
   border: none;
   font-size: ${sizes['base']};
   font-weight: normal;
-  color: #f9f9f9;
+  color: ${palette.text.default};
 
   &:focus {
     outline: none;
@@ -65,7 +72,7 @@ export const StyledLabel = styled.label<{
   line-height: 1.4;
   transform: translateY(-50%);
   transform-origin: center left;
-  color: ${(p) => (p.error ? 'tomato' : '#f9f9f9')};
+  color: ${(p) => (p.error ? palette.error : palette.text)};
 
   transition-property: transform, top, letter-spacing;
   transition-duration: 0.3s;

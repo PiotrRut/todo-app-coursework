@@ -1,5 +1,7 @@
 import { createGlobalStyle, css } from 'styled-components';
 
+import { palette } from './palette';
+
 export const styles = css`
   html,
   body {
@@ -18,7 +20,7 @@ export const styles = css`
   blockquote,
   dl,
   dd {
-    color: #f9f9f9;
+    color: ${palette.text.default};
     margin: 0;
     font-family: 'Ubuntu', sans-serif;
     font-size: 1rem;
@@ -54,7 +56,7 @@ export const styles = css`
   }
 
   body {
-    background-color: #1b1b1b;
+    background-color: ${palette.primary.dark};
   }
 
   img,
