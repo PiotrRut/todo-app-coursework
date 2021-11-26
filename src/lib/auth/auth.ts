@@ -35,7 +35,7 @@ export const useSignIn = () => {
 
   const signIn = async (email: string, password: string) => {
     try {
-      const { data } = await await login({
+      const { data } = await login({
         data: { email, plaintextPassword: password },
       });
       setUser({

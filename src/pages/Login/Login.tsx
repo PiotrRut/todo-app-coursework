@@ -51,15 +51,14 @@ const Login: NextPage = () => {
                 loading={loading}
                 disabled={!Object.values(values).every((v) => v)}
               >
-                Log in
+                Sign in
               </Button>
             </Form>
           )}
         </Formik>
 
         <p>
-          No account? no problem -{' '}
-          <Link href={AppRoutes.SignUp}>create one now</Link>
+          No account? <Link href={AppRoutes.SignUp}>Create one now</Link>
         </p>
       </LoginContainer>
     </Container>

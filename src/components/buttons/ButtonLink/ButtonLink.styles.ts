@@ -12,6 +12,7 @@ export const ButtonLinkContainer = styled.button<ButtonLinkProps>`
   color: ${(p) =>
     p.color === 'white' ? palette.text.default : palette.text.dark};
   padding: ${sizes[10]};
+  
 
   &:hover {
     background-color: rgb(70,130,180, 0.2);

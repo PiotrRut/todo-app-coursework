@@ -19,10 +19,10 @@ export const styles = css`
   figure,
   blockquote,
   dl,
+  label,
   dd {
     color: ${palette.text.default};
     margin: 0;
-    font-family: 'Ubuntu', sans-serif;
     font-size: 1rem;
   }
 
@@ -63,6 +63,10 @@ export const styles = css`
   picture {
     max-width: 100%;
     display: block;
+  }
+
+  button {
+    font-family: Ubuntu, sans-serif;
   }
 `;
 

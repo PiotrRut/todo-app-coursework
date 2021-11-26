@@ -20,6 +20,7 @@ export function useLocalStorage<T>(
       return initialValue;
     }
   });
+
   const setValue = (newValue: T) => {
     if (typeof newValue === 'undefined') return;
     setStoredValue(newValue);
@@ -28,5 +29,6 @@ export function useLocalStorage<T>(
       typeof newValue !== 'string' ? JSON.stringify(newValue) : newValue
     );
   };
+
   return [storedValue, setValue];
 }

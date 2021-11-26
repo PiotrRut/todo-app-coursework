@@ -40,7 +40,10 @@ class MyDocument extends Document {
         <Head>
           <link rel="icon" href="/favicon.ico" />
 
-          <meta name="theme-color" content="#262835" />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+          />
         </Head>
         <body>
           <Main />

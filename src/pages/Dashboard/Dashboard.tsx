@@ -7,7 +7,11 @@ import { Container } from './Dashboard.styles';
 const Dashboard: NextPage = () => {
   useAuthenticatedRoute();
 
-  return <Container></Container>;
+  return (
+    <Container>
+      <p>Your dashboard</p>
+    </Container>
+  );
 };
 
 export default Dashboard;
