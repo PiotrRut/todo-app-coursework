@@ -1,6 +1,7 @@
 import Button from '@components/buttons/Button';
 import FormTextField from '@components/FormTextField';
 import Link from '@components/Link';
+import { H1 } from '@components/Text';
 import { useSignIn } from '@lib/auth/auth';
 import { AppRoutes } from '@lib/constants';
 import useRestrictedRoute from '@lib/hooks/useRestrictedRoute';
@@ -18,7 +19,7 @@ const Login: NextPage = () => {
   return (
     <Container>
       <LoginContainer>
-        <h1>Sign in to your account</h1>
+        <H1>Sign in to your account</H1>
 
         <Formik
           initialValues={{ email: '', plaintextPassword: '' }}

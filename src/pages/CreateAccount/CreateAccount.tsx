@@ -1,5 +1,6 @@
 import Button from '@components/buttons/Button';
 import FormTextField from '@components/FormTextField';
+import { H1 } from '@components/Text';
 import { useCreateAccount } from '@lib/auth/auth';
 import useRestrictedRoute from '@lib/hooks/useRestrictedRoute';
 import { Form, Formik } from 'formik';
@@ -20,7 +21,7 @@ const CreateAccount: NextPage = () => {
   return (
     <Container>
       <CreateAccountContainer>
-        <h1>Register for a free account today!</h1>
+        <H1>Create a new account</H1>
 
         <Formik
           initialValues={{

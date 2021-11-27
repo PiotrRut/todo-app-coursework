@@ -10,7 +10,7 @@ const Layout: FunctionComponent = ({ children }) => {
   return (
     <LayoutContainer>
       {isSignedIn && <AppBar />}
-      <LayoutInner>{children}</LayoutInner>
+      <LayoutInner {...{ isSignedIn }}>{children}</LayoutInner>
     </LayoutContainer>
   );
 };

@@ -15,6 +15,7 @@ export const sizes = {
   base: '1rem',
   18: '1.125rem',
   20: '1.25rem',
+  24: '1.5rem',
   25: '1.563rem',
   30: '1.875rem',
   32: '2rem',
