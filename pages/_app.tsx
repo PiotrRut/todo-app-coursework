@@ -18,7 +18,11 @@ function App({ Component, pageProps }: AppProps) {
     <AppContextProvider>
       <GlobalStyle />
       <Toast />
-      <Layout>{mounted && <Component {...pageProps} />}</Layout>
+      {mounted && (
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      )}
     </AppContextProvider>
   );
 }

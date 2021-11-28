@@ -1,3 +1,4 @@
+import { H1 } from '@components/Text';
 import useAuthenticatedRoute from '@lib/hooks/useAuthenticatedRoute';
 import { NextPage } from 'next';
 import React from 'react';
@@ -9,7 +10,7 @@ const Dashboard: NextPage = () => {
 
   return (
     <Container>
-      <p>Your dashboard</p>
+      <H1>Your dashboard</H1>
     </Container>
   );
 };

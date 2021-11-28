@@ -1,7 +1,7 @@
 import Button from '@components/buttons/Button';
 import FormTextField from '@components/FormTextField';
 import Link from '@components/Link';
-import { H1 } from '@components/Text';
+import { H1, P } from '@components/Text';
 import { useSignIn } from '@lib/auth/auth';
 import { AppRoutes } from '@lib/constants';
 import useRestrictedRoute from '@lib/hooks/useRestrictedRoute';
@@ -58,9 +58,9 @@ const Login: NextPage = () => {
           )}
         </Formik>
 
-        <p>
+        <P>
           No account? <Link href={AppRoutes.SignUp}>Create one now</Link>
-        </p>
+        </P>
       </LoginContainer>
     </Container>
   );

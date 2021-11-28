@@ -1,4 +1,5 @@
 import ButtonLink from '@components/buttons/ButtonLink';
+import { P } from '@components/Text';
 import { signOut } from '@lib/auth/auth';
 import { useAppContext } from '@lib/contexts/app';
 import React, { FunctionComponent } from 'react';
@@ -11,9 +12,9 @@ const AppBar: FunctionComponent<AppBarProps> = () => {
 
   return (
     <AppBarContainer>
-      <div>
+      <P>
         Welcome back, {user?.firstName} {user?.lastName}
-      </div>
+      </P>
       <div>
         <ButtonLink name="sign-out" onClick={signOut}>
           Sign out
