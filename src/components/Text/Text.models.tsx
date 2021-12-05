@@ -14,5 +14,7 @@ export interface TextProps {
   renderAs?: TextVariants;
   /** Font weight of the text */
   weight?: 'bold' | 'normal';
+  /** Optional colour */
+  color?: 'default' | 'gray';
   children: React.ReactNode;
 }

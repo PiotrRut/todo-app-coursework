@@ -19,8 +19,8 @@ export const fontSizes = {
 };
 
 export const TextContainer = styled.p<TextProps>`
-  margin-bottom: ${(props) => props.marginBottom || '0'};
-  color: inherit;
+  margin-bottom: ${(p) => (p.marginBottom ? sizes[p.marginBottom] : 0)};
+  color: ${(p) => (p.color === 'gray' ? '#bdbdbd' : 'inherit')};
   font-weight: ${(props) => props.weight};
   font-size: ${(props) => fontSizes.mobile[props.variant ?? 'p']};
 

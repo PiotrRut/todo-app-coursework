@@ -10,6 +10,7 @@ const Text = forwardRef<HTMLParagraphElement, TextProps>((props, ref) => {
     variant,
     children,
     weight = 'normal',
+    color = 'default',
   } = props;
 
   return (
@@ -19,6 +20,7 @@ const Text = forwardRef<HTMLParagraphElement, TextProps>((props, ref) => {
       marginBottom={marginBottom}
       weight={weight}
       variant={variant}
+      color={color}
     >
       {children}
     </TextContainer>
