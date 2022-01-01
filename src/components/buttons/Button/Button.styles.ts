@@ -17,6 +17,7 @@ export const ButtonContainer = styled.button<ButtonProps>`
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
   pointer-events: ${(p) => (p.disabled ? 'none' : 'auto')};
+  color: ${palette.text.dark};
 
   &:hover {
     background-color: ${(p) =>

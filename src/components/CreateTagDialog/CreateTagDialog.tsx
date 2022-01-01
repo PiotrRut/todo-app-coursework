@@ -1,0 +1,65 @@
+import Button from '@components/buttons/Button';
+import Dialog from '@components/Dialog';
+import FormTextField from '@components/FormTextField';
+import { H2, P } from '@components/Text';
+import { Form, Formik } from 'formik';
+import React, { FunctionComponent } from 'react';
+
+import { CreateTagDialogProps } from './CreateTagDialog.models';
+import { StyledForm } from './CreateTagDialog.styles';
+
+/** Dialog for creating new tags - wraps around the `Dialog` component */
+const CreateTagDialog: FunctionComponent<CreateTagDialogProps> = (props) => {
+  const { newTag, refetchTags, loading, open, onClose } = props;
+
+  return (
+    <Dialog open={open} onClose={onClose}>
+      <H2 marginBottom={10}>Create a new tag</H2>
+      <P marginBottom={20} color="gray">
+        Please provide a name and a description for your new tag.
+      </P>
+      <Formik
+        initialValues={{ title: '', description: '' }}
+        onSubmit={async ({ title, description }) => {
+          await newTag(title, description);
+          await refetchTags();
+          onClose();
+        }}
+      >
+        {({ values }) => (
+          <Form>
+            <StyledForm>
+              <FormTextField
+                name="title"
+                label="Name"
+                marginBottom={10}
+                required
+                autoFocus
+                fullWidth
+              />
+
+              <FormTextField
+                name="description"
+                label="Description"
+                marginBottom={30}
+                required
+                fullWidth
+              />
+            </StyledForm>
+            <Button
+              name="create-tag"
+              type="submit"
+              loading={loading}
+              disabled={!Object.values(values).every((v) => v)}
+              fullWidth
+            >
+              Create tag
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </Dialog>
+  );
+};
+
+export default CreateTagDialog;

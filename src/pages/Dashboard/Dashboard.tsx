@@ -1,4 +1,5 @@
 import PillButton from '@components/buttons/PillButton';
+import CreateTagDialog from '@components/CreateTagDialog';
 import { H1, H2 } from '@components/Text';
 import TodoItem from '@components/TodoItem';
 import { TagContainer } from '@components/TodoItem/TodoItem.styles';
@@ -6,7 +7,7 @@ import { useCreateTag, useGetAllTags } from '@lib/domain/Tags';
 import { Todo } from '@lib/domain/Todos';
 import useAuthenticatedRoute from '@lib/hooks/useAuthenticatedRoute';
 import { NextPage } from 'next';
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import { Container, TagsContainer, TodosContainer } from './Dashboard.styles';
@@ -14,10 +15,10 @@ import { Container, TagsContainer, TodosContainer } from './Dashboard.styles';
 const Dashboard: NextPage = () => {
   useAuthenticatedRoute();
 
-  const { newTag } = useCreateTag();
+  const { newTag, loading } = useCreateTag();
   const { tags, refetchTags } = useGetAllTags();
 
-  console.log(tags?.map((t) => t.title));
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   // TEMPORARY
   const items: Todo[] = [
@@ -69,9 +70,8 @@ const Dashboard: NextPage = () => {
         })}
         <PillButton
           name="new-tag"
-          onClick={async () => {
-            await newTag('Rockets', 'All about rockets');
-            await refetchTags();
+          onClick={() => {
+            setDialogOpen(true);
           }}
         >
           <AiOutlinePlus />
@@ -87,6 +87,16 @@ const Dashboard: NextPage = () => {
         <TodoItem item={items[1]} />
         <TodoItem item={items[2]} />
       </TodosContainer>
+
+      <CreateTagDialog
+        newTag={newTag}
+        refetchTags={refetchTags}
+        loading={loading}
+        open={dialogOpen}
+        onClose={() => {
+          setDialogOpen(false);
+        }}
+      />
     </Container>
   );
 };
