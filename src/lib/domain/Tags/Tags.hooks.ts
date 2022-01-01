@@ -2,10 +2,14 @@ import { ApiRoutes } from '@lib/constants';
 import useAxios from 'axios-hooks';
 import { toast } from 'react-toastify';
 
-import { Tag } from '.';
+import { NewTagRequestBody, Tag } from '.';
 
+/**
+ * This hook is used to create new tags
+ * @returns newTag A function which takes a title and description for a tag
+ */
 export const useCreateTag = () => {
-  const [{ loading, error }, createTag] = useAxios<Tag[]>(
+  const [{ loading, error }, createTag] = useAxios<Tag[], NewTagRequestBody>(
     {
       url: ApiRoutes.CreateTag,
       method: 'POST',
@@ -35,6 +39,10 @@ export const useCreateTag = () => {
 /**
  * This hook is used to fetch and return the list of tags from the DB,
  * as well as loading and error states for the request.
+ * @returns tags An array of all tags
+ * @returns loading A boolean indicating if the request is loading
+ * @returns error A boolean indicating if there was an error
+ * @returns searchTags A function which will refetch the list of tags
  */
 export const useGetAllTags = () => {
   const [{ data, loading, error }, refetchTags] = useAxios<Tag[]>(

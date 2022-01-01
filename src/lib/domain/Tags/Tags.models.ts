@@ -6,3 +6,5 @@ export type Tag = {
   /** Optional description */
   description?: string;
 };
+
+export type NewTagRequestBody = Omit<Tag, 'id'>;
