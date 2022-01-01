@@ -8,6 +8,9 @@ export const TodoItemContainer = styled.div`
   width: 100%;
   padding: ${sizes[15]};
   margin-bottom: ${sizes[30]};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   @media (min-width: 920px) {
     margin-right: ${sizes[30]};
@@ -28,4 +31,6 @@ export const TagContainer = styled.div`
   padding: ${sizes[5]} ${sizes[10]};
   border-radius: ${sizes[15]};
   max-width: fit-content;
+  max-height: fit-content;
+  margin: 0 ${sizes[5]} ${sizes[10]} 0;
 `;

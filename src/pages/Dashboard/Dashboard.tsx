@@ -1,14 +1,23 @@
-import { H1 } from '@components/Text';
+import PillButton from '@components/buttons/PillButton';
+import { H1, H2 } from '@components/Text';
 import TodoItem from '@components/TodoItem';
+import { TagContainer } from '@components/TodoItem/TodoItem.styles';
+import { useCreateTag, useGetAllTags } from '@lib/domain/Tags';
 import { Todo } from '@lib/domain/Todos';
 import useAuthenticatedRoute from '@lib/hooks/useAuthenticatedRoute';
 import { NextPage } from 'next';
 import React from 'react';
+import { AiOutlinePlus } from 'react-icons/ai';
 
-import { Container, TodosContainer } from './Dashboard.styles';
+import { Container, TagsContainer, TodosContainer } from './Dashboard.styles';
 
 const Dashboard: NextPage = () => {
   useAuthenticatedRoute();
+
+  const { newTag } = useCreateTag();
+  const { tags, refetchTags } = useGetAllTags();
+
+  console.log(tags?.map((t) => t.title));
 
   // TEMPORARY
   const items: Todo[] = [
@@ -50,6 +59,29 @@ const Dashboard: NextPage = () => {
   return (
     <Container>
       <H1 marginBottom={30}>Your dashboard</H1>
+
+      <H2 marginBottom={20}>
+        All tags <span>🔖</span>
+      </H2>
+      <TagsContainer>
+        {tags?.map((tag) => {
+          return <TagContainer>#{tag.title}</TagContainer>;
+        })}
+        <PillButton
+          name="new-tag"
+          onClick={async () => {
+            await newTag('Rockets', 'All about rockets');
+            await refetchTags();
+          }}
+        >
+          <AiOutlinePlus />
+          New tag
+        </PillButton>
+      </TagsContainer>
+
+      <H2 marginBottom={20}>
+        All to-dos <span>📝</span>
+      </H2>
       <TodosContainer>
         <TodoItem item={items[0]} />
         <TodoItem item={items[1]} />

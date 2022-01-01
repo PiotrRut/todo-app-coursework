@@ -9,7 +9,7 @@ export type Todo = {
   completeDate?: string;
   /** Boolean indicating whether the todo has been marked as done */
   isCompleted: boolean;
-  /** Optional tag/hashtag for the todo */
+  /** Optional tag/hashtag attached to the todo */
   tag?: {
     id: string;
     title: string;

@@ -12,4 +12,9 @@ export enum ApiRoutes {
   CreateTodo = '/todo/new',
   UpdateTodo = '/todo/edit',
   DeleteTodo = '/todo/delete',
+  GetTags = '/tag/tags',
+  GetSingleTag = '/tag',
+  CreateTag = '/tag/new',
+  UpdateTag = '/tag/edit',
+  DeleteTag = '/tag/delete',
 }

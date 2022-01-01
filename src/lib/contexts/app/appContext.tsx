@@ -38,9 +38,7 @@ export const AppContextProvider: React.FunctionComponent = ({ children }) => {
 
   useEffect(() => {
     if (router.route !== '/') return;
-
     if (!userIdToken) router.push(AppRoutes.Login);
-
     if (userIdToken && isAppReady) router.push(AppRoutes.Dashboard);
 
     return;

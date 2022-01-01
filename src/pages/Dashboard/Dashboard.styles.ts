@@ -1,3 +1,4 @@
+import { sizes } from '@theme/tokens';
 import styled from 'styled-components';
 
 export const Container = styled.div``;
@@ -25,9 +26,6 @@ export const TagsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-
-  @media (min-width: 780px) {
-    width: 50%;
-    flex-direction: row;
-  }
+  flex-direction: row;
+  margin-bottom: ${sizes[20]};
 `;

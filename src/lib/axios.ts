@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import Axios from 'axios';
 import { configure } from 'axios-hooks';
 
