@@ -1,9 +1,10 @@
+import TagItem from '@components/TagItem';
 import { H3, P } from '@components/Text';
 import dayjs from 'dayjs';
 import React, { FunctionComponent } from 'react';
 
 import { TodoItemProps } from './TodoItem.models';
-import { FlexRow, TagContainer, TodoItemContainer } from './TodoItem.styles';
+import { FlexRow, TodoItemContainer } from './TodoItem.styles';
 
 const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
   const {
@@ -28,7 +29,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
         </P>
       )}
       <FlexRow>
-        {tag && <TagContainer>#{tag.title}</TagContainer>}
+        {tag && <TagItem>{tag.title}</TagItem>}
         <P>Status - {isCompleted ? <span>✅</span> : <span>🙅🏼‍♂️</span>}</P>
       </FlexRow>
     </TodoItemContainer>

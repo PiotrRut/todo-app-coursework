@@ -1,8 +1,8 @@
 import PillButton from '@components/buttons/PillButton';
 import CreateTagDialog from '@components/CreateTagDialog';
+import TagItem from '@components/TagItem';
 import { H1, H2 } from '@components/Text';
 import TodoItem from '@components/TodoItem';
-import { TagContainer } from '@components/TodoItem/TodoItem.styles';
 import { useCreateTag, useGetAllTags } from '@lib/domain/Tags';
 import { Todo } from '@lib/domain/Todos';
 import useAuthenticatedRoute from '@lib/hooks/useAuthenticatedRoute';
@@ -66,7 +66,7 @@ const Dashboard: NextPage = () => {
       </H2>
       <TagsContainer>
         {tags?.map((tag) => {
-          return <TagContainer>#{tag.title}</TagContainer>;
+          return <TagItem>{tag.title}</TagItem>;
         })}
         <PillButton
           name="new-tag"
