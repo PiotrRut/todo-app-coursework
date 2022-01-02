@@ -52,11 +52,6 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
           <H3 renderAs="p" marginBottom={20}>
             {title}
           </H3>
-          {completeDate && (
-            <H3 renderAs="p" marginBottom={20}>
-              {dayjs(completeDate).format('D/M/YY')}
-            </H3>
-          )}
         </FlexRow>
         {body && (
           <P color="gray" marginBottom={20}>
@@ -65,6 +60,9 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
         )}
         <FlexRow>
           {tag && <TagItem noBottomMargin>{tag.title}</TagItem>}
+          {completeDate && (
+            <H3 renderAs="p">{dayjs(completeDate).format('D/M/YY')}</H3>
+          )}
           <div>
             {!isCompleted && (
               <ClearButton onClick={handleMarkCompleted} type="button">

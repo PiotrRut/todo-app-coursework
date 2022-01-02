@@ -2,6 +2,7 @@ import Button from '@components/buttons/Button';
 import Dialog from '@components/Dialog';
 import FormTextField from '@components/FormTextField';
 import { H2 } from '@components/Text';
+import dayjs from 'dayjs';
 import { Form, Formik } from 'formik';
 import React, { FunctionComponent } from 'react';
 
@@ -12,6 +13,7 @@ import {
   MarkUncompletedButton,
   StyledForm,
 } from './EditTodoDialog.styles';
+import { validate } from './EditTodoDialog.validate';
 
 /** Dialog for editing to-dos - wraps around the `Dialog` component */
 const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
@@ -31,15 +33,16 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
         initialValues={{
           title: todo.title,
           body: todo.body,
-          completeDate: todo.completeDate,
+          completeDate: dayjs(todo.completeDate).format('YYYY-MM-DD'),
           isCompleted: todo.isCompleted,
           tagId: todo.tag?.id,
         }}
+        validate={validate}
         onSubmit={async ({ title, body, completeDate, tagId }) => {
           await editTodo({
             title,
             body,
-            completeDate,
+            completeDate: completeDate && dayjs(completeDate).format(),
             tag: {
               id: tagId ?? '',
             },
@@ -55,6 +58,7 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
                 label="Title"
                 marginBottom={10}
                 defaultValue={todo.title}
+                required
                 autoFocus
                 fullWidth
               />
@@ -69,9 +73,10 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
 
               <FormTextField
                 name="completeDate"
-                label="Deadline"
+                label="Deadline (YYYY-MM-DD)"
                 marginBottom={30}
-                defaultValue={todo.completeDate}
+                defaultValue={dayjs(todo.completeDate).format('YYYY-MM-DD')}
+                mask="9999-99-99"
                 fullWidth
               />
             </StyledForm>

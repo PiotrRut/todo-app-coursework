@@ -18,4 +18,6 @@ export interface TextFieldProps
   marginBottom?: keyof typeof sizes;
   /** Indicates whether field is required or not (visual only) */
   required?: boolean;
+  /** If mask is provided, the masked input component will be rendered instead */
+  mask?: string;
 }

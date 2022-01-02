@@ -32,7 +32,7 @@ const Dashboard: NextPage = () => {
         id: '1',
         title: 'university',
       },
-      completeDate: '2021-12-4',
+      completeDate: '2018-04-04T00:00:00.000Z',
     },
     {
       id: '1',
@@ -43,7 +43,7 @@ const Dashboard: NextPage = () => {
         id: '1',
         title: 'personal',
       },
-      completeDate: '2022-03-13',
+      completeDate: '2021-04-12T00:00:00.000Z',
     },
     {
       id: '1',
@@ -54,7 +54,7 @@ const Dashboard: NextPage = () => {
         id: '1',
         title: 'university',
       },
-      completeDate: '2021-12-5',
+      completeDate: '2022-12-09T00:00:00.000Z',
     },
   ];
 

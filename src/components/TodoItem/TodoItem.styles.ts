@@ -31,7 +31,7 @@ export const ClearButton = styled.button`
   display: inline-block;
   border: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 0 ${sizes[10]};
   text-decoration: none;
   background: transparent;
   color: inherit;
