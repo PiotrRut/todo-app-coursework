@@ -30,6 +30,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
     try {
       await completedAction(id, false);
       toast.success(`"${title}" has been moved to to-do`);
+      setTodoDialogOpen(false);
     } catch {
       toast.error(`Something went wrong, please try again`);
     }
@@ -38,6 +39,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
   const changeDetails = async (todo: Partial<Omit<Todo, 'isCompleted'>>) => {
     try {
       await changeToDoDetails(todo);
+      setTodoDialogOpen(false);
     } catch {
       toast.error(`Something went wrong, please try again`);
     }
