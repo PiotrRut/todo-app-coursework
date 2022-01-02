@@ -70,3 +70,30 @@ export const useEditTodos = () => {
     changeToDoDetails,
   };
 };
+
+/**
+ * This hooks provides methods for creating new todo tasks, as well
+ * as loading and error states for the requests.
+ */
+export const useCreateTodo = () => {
+  const [{ loading, error }, newTodo] = useAxios<
+    unknown,
+    Partial<Omit<Todo, 'id'>>
+  >(
+    {
+      url: ApiRoutes.CreateTodo,
+      method: 'POST',
+    },
+    {
+      manual: true,
+    }
+  );
+
+  const createTodo = async (todo: Partial<Omit<Todo, 'id'>>) => {
+    await newTodo({
+      data: todo,
+    });
+  };
+
+  return { newTodoLoading: loading, error, createTodo };
+};

@@ -1,16 +1,29 @@
 import PillButton from '@components/buttons/PillButton';
 import CreateTagDialog from '@components/CreateTagDialog';
+import NewTodoDialog from '@components/NewTodoDialog';
 import TagItem from '@components/TagItem';
-import { H1, H2 } from '@components/Text';
+import { H1, H2, P } from '@components/Text';
 import TodoItem from '@components/TodoItem';
 import { useCreateTag, useGetAllTags } from '@lib/domain/Tags';
-import { Todo, useEditTodos, useGetTodos } from '@lib/domain/Todos';
+import {
+  Todo,
+  useCreateTodo,
+  useEditTodos,
+  useGetTodos,
+} from '@lib/domain/Todos';
 import useAuthenticatedRoute from '@lib/hooks/useAuthenticatedRoute';
+import { palette } from '@theme/palette';
 import { NextPage } from 'next';
 import React, { useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { BsPlusCircleDotted } from 'react-icons/bs';
 
-import { Container, TagsContainer, TodosContainer } from './Dashboard.styles';
+import {
+  Container,
+  NewTodoButton,
+  TagsContainer,
+  TodosContainer,
+} from './Dashboard.styles';
 
 const Dashboard: NextPage = () => {
   useAuthenticatedRoute();
@@ -23,8 +36,10 @@ const Dashboard: NextPage = () => {
     changeToDoDetails,
     loadingChangeTodos,
   } = useEditTodos();
+  const { newTodoLoading, createTodo } = useCreateTodo();
 
   const [tagDialogOpen, setTagDialogOpen] = useState(false);
+  const [todoDialogOpen, setTodoDialogOpen] = useState(false);
 
   // TEMPORARY
   const items: Todo[] = [
@@ -61,6 +76,17 @@ const Dashboard: NextPage = () => {
       },
       completeDate: '2022-12-09T00:00:00.000Z',
     },
+    {
+      id: '1',
+      title: 'Tell Reece he is shit',
+      body: 'He knows it already but its okay',
+      isCompleted: false,
+      tag: {
+        id: '1',
+        title: 'boobs',
+      },
+      completeDate: '2022-01-04T00:00:00.000Z',
+    },
   ];
 
   return (
@@ -86,7 +112,7 @@ const Dashboard: NextPage = () => {
       </TagsContainer>
 
       <H2 marginBottom={20}>
-        All to-dos <span>📝</span>
+        All tasks <span>📝</span>
       </H2>
       <TodosContainer>
         {items.map((todo) => (
@@ -98,6 +124,10 @@ const Dashboard: NextPage = () => {
             loading={loadingChangeTodos}
           />
         ))}
+        <NewTodoButton onClick={() => setTodoDialogOpen(true)}>
+          <BsPlusCircleDotted size={50} color={palette.secondary.main} />
+          <P color="gray">Create a new task</P>
+        </NewTodoButton>
       </TodosContainer>
 
       <CreateTagDialog
@@ -108,6 +138,13 @@ const Dashboard: NextPage = () => {
         onClose={() => {
           setTagDialogOpen(false);
         }}
+      />
+
+      <NewTodoDialog
+        open={todoDialogOpen}
+        onClose={() => setTodoDialogOpen(false)}
+        loading={newTodoLoading}
+        createTodo={createTodo}
       />
     </Container>
   );
