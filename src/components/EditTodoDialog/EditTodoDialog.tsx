@@ -47,7 +47,6 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
               id: tagId ?? '',
             },
           });
-          // ADD AWAIT REFETCH
         }}
       >
         {({ values }) => (

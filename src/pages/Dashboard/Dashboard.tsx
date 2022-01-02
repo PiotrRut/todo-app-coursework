@@ -4,7 +4,7 @@ import TagItem from '@components/TagItem';
 import { H1, H2 } from '@components/Text';
 import TodoItem from '@components/TodoItem';
 import { useCreateTag, useGetAllTags } from '@lib/domain/Tags';
-import { Todo, useEditTodos } from '@lib/domain/Todos';
+import { Todo, useEditTodos, useGetTodos } from '@lib/domain/Todos';
 import useAuthenticatedRoute from '@lib/hooks/useAuthenticatedRoute';
 import { NextPage } from 'next';
 import React, { useState } from 'react';
@@ -16,8 +16,13 @@ const Dashboard: NextPage = () => {
   useAuthenticatedRoute();
 
   const { tags, refetchTags } = useGetAllTags();
+  const { refetchTodos } = useGetTodos();
   const { newTag, loading } = useCreateTag();
-  const { changeToDoStatus, changeToDoDetails } = useEditTodos();
+  const {
+    changeToDoStatus,
+    changeToDoDetails,
+    loadingChangeTodos,
+  } = useEditTodos();
 
   const [tagDialogOpen, setTagDialogOpen] = useState(false);
 
@@ -89,6 +94,8 @@ const Dashboard: NextPage = () => {
             item={todo}
             completedAction={changeToDoStatus}
             changeToDoDetails={changeToDoDetails}
+            refetchTodos={refetchTodos}
+            loading={loadingChangeTodos}
           />
         ))}
       </TodosContainer>

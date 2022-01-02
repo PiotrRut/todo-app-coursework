@@ -5,6 +5,10 @@ export interface TodoItemProps {
   item: Todo;
   /** Function which triggers after clicking the "mark as done" icon-button  */
   completedAction: (id: string, isCompleted: boolean) => Promise<void>;
+  /** Function for refetching the list of todos */
+  refetchTodos?: () => void;
+  /** Loading state of the edit details request */
+  loading: boolean;
   /** Function to change a to-dos details */
   changeToDoDetails: (
     todo: Partial<Omit<Todo, 'isCompleted'>>

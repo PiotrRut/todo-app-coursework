@@ -8,12 +8,12 @@ import { Todo } from '.';
  * as well as loading and error states for the request.
  */
 export const useGetTodos = () => {
-  const [{ data, loading, error }, refetch] = useAxios<Todo[]>(
+  const [{ data, loading, error }, refetchTodos] = useAxios<Todo[]>(
     ApiRoutes.GetTodos
   );
 
   const searchTodos = async (query: string, showCompleted: boolean) => {
-    refetch({
+    refetchTodos({
       params: {
         tagName: query,
         completed: showCompleted,
@@ -21,7 +21,7 @@ export const useGetTodos = () => {
     });
   };
 
-  return { todos: data, loading, error, searchTodos };
+  return { todos: data, loading, error, searchTodos, refetchTodos };
 };
 
 /**
@@ -63,5 +63,10 @@ export const useEditTodos = () => {
     });
   };
 
-  return { loading, error, changeToDoStatus, changeToDoDetails };
+  return {
+    loadingChangeTodos: loading,
+    error,
+    changeToDoStatus,
+    changeToDoDetails,
+  };
 };

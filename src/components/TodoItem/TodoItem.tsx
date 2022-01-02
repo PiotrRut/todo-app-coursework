@@ -11,7 +11,13 @@ import { TodoItemProps } from './TodoItem.models';
 import { ClearButton, FlexRow, TodoItemContainer } from './TodoItem.styles';
 
 const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
-  const { item, completedAction, changeToDoDetails } = props;
+  const {
+    item,
+    completedAction,
+    changeToDoDetails,
+    refetchTodos,
+    loading,
+  } = props;
 
   const { title, body, id, tag, isCompleted, completeDate } = item;
 
@@ -20,6 +26,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
   const handleMarkCompleted = async () => {
     try {
       await completedAction(id, true);
+      await refetchTodos?.();
       toast.success(`"${title}" has been marked as completed`);
     } catch {
       toast.error(`Something went wrong, please try again`);
@@ -29,6 +36,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
   const handleMarkUnCompleted = async () => {
     try {
       await completedAction(id, false);
+      await refetchTodos?.();
       toast.success(`"${title}" has been moved to to-do`);
       setTodoDialogOpen(false);
     } catch {
@@ -39,6 +47,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
   const changeDetails = async (todo: Partial<Omit<Todo, 'isCompleted'>>) => {
     try {
       await changeToDoDetails(todo);
+      await refetchTodos?.();
       setTodoDialogOpen(false);
     } catch {
       toast.error(`Something went wrong, please try again`);
@@ -82,7 +91,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
         handleMarkUnCompleted={handleMarkUnCompleted}
         todo={item}
         editTodo={changeDetails}
-        loading={false}
+        loading={loading}
       />
     </>
   );

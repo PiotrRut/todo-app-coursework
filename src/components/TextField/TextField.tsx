@@ -59,6 +59,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
   if (mask) {
     return (
       <InputMask
+        maskPlaceholder={null}
         mask={mask}
         onChange={onFieldChange}
         onBlur={(event) => {
