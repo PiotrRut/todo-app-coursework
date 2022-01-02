@@ -4,7 +4,7 @@ import TagItem from '@components/TagItem';
 import { H1, H2 } from '@components/Text';
 import TodoItem from '@components/TodoItem';
 import { useCreateTag, useGetAllTags } from '@lib/domain/Tags';
-import { Todo } from '@lib/domain/Todos';
+import { Todo, useEditTodos } from '@lib/domain/Todos';
 import useAuthenticatedRoute from '@lib/hooks/useAuthenticatedRoute';
 import { NextPage } from 'next';
 import React, { useState } from 'react';
@@ -15,10 +15,11 @@ import { Container, TagsContainer, TodosContainer } from './Dashboard.styles';
 const Dashboard: NextPage = () => {
   useAuthenticatedRoute();
 
-  const { newTag, loading } = useCreateTag();
   const { tags, refetchTags } = useGetAllTags();
+  const { newTag, loading } = useCreateTag();
+  const { changeToDoStatus, changeToDoDetails } = useEditTodos();
 
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [tagDialogOpen, setTagDialogOpen] = useState(false);
 
   // TEMPORARY
   const items: Todo[] = [
@@ -71,7 +72,7 @@ const Dashboard: NextPage = () => {
         <PillButton
           name="new-tag"
           onClick={() => {
-            setDialogOpen(true);
+            setTagDialogOpen(true);
           }}
         >
           <AiOutlinePlus />
@@ -83,18 +84,22 @@ const Dashboard: NextPage = () => {
         All to-dos <span>📝</span>
       </H2>
       <TodosContainer>
-        <TodoItem item={items[0]} />
-        <TodoItem item={items[1]} />
-        <TodoItem item={items[2]} />
+        {items.map((todo) => (
+          <TodoItem
+            item={todo}
+            completedAction={changeToDoStatus}
+            changeToDoDetails={changeToDoDetails}
+          />
+        ))}
       </TodosContainer>
 
       <CreateTagDialog
         newTag={newTag}
         refetchTags={refetchTags}
         loading={loading}
-        open={dialogOpen}
+        open={tagDialogOpen}
         onClose={() => {
-          setDialogOpen(false);
+          setTagDialogOpen(false);
         }}
       />
     </Container>

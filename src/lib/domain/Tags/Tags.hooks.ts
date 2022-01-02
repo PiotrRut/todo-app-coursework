@@ -19,7 +19,8 @@ export const useCreateTag = () => {
     }
   );
 
-  const newTag = async (title: string, description: string) => {
+  /** Creation of a new tag */
+  const newTag = async (title: string, description?: string) => {
     try {
       await createTag({
         data: {

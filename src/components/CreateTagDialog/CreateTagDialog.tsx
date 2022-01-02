@@ -13,10 +13,10 @@ const CreateTagDialog: FunctionComponent<CreateTagDialogProps> = (props) => {
   const { newTag, refetchTags, loading, open, onClose } = props;
 
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog {...{ onClose, open }}>
       <H2 marginBottom={10}>Create a new tag</H2>
       <P marginBottom={20} color="gray">
-        Please provide a name and a description for your new tag.
+        Please provide a name and an optional description for your new tag.
       </P>
       <Formik
         initialValues={{ title: '', description: '' }}
@@ -33,6 +33,7 @@ const CreateTagDialog: FunctionComponent<CreateTagDialogProps> = (props) => {
                 name="title"
                 label="Name"
                 marginBottom={10}
+                maxLength={20}
                 required
                 autoFocus
                 fullWidth
@@ -42,7 +43,6 @@ const CreateTagDialog: FunctionComponent<CreateTagDialogProps> = (props) => {
                 name="description"
                 label="Description"
                 marginBottom={30}
-                required
                 fullWidth
               />
             </StyledForm>
@@ -50,7 +50,7 @@ const CreateTagDialog: FunctionComponent<CreateTagDialogProps> = (props) => {
               name="create-tag"
               type="submit"
               loading={loading}
-              disabled={!Object.values(values).every((v) => v)}
+              disabled={!values.title}
               fullWidth
             >
               Create tag

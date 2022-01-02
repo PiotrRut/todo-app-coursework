@@ -12,6 +12,8 @@ import {
 /**
  * A generic dialog which bases its functionality on the Radix primitive dialog.
  * It's a controlled component and therefore requires the `open` prop to be passed.
+ *
+ * Ref - https://www.radix-ui.com/docs/primitives/components/dialog
  */
 const Dialog: FunctionComponent<DialogProps> = (props) => {
   const { children, open = false, onClose, ...rest } = props;

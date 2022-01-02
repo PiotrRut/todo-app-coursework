@@ -11,8 +11,8 @@ export type Todo = {
   isCompleted: boolean;
   /** Optional tag/hashtag attached to the todo */
   tag?: {
-    id: string;
-    title: string;
+    id?: string;
+    title?: string;
     description?: string;
   };
 };
