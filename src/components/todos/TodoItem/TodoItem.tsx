@@ -1,5 +1,4 @@
-import EditTodoDialog from '@components/EditTodoDialog';
-import TagItem from '@components/TagItem';
+import TagItem from '@components/tags/TagItem';
 import { H3, P } from '@components/Text';
 import { TodoRequestBody } from '@lib/domain/Todos';
 import dayjs from 'dayjs';
@@ -7,6 +6,7 @@ import React, { FunctionComponent, useState } from 'react';
 import { MdCheckCircle, MdOutlineEditNote } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
+import EditTodoDialog from '../EditTodoDialog';
 import { TodoItemProps } from './TodoItem.models';
 import { ClearButton, FlexRow, TodoItemContainer } from './TodoItem.styles';
 
