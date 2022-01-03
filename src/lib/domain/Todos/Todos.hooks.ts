@@ -21,7 +21,13 @@ export const useGetTodos = () => {
     });
   };
 
-  return { todos: data, loading, error, searchTodos, refetchTodos };
+  return {
+    todos: data,
+    loadingTodos: loading,
+    error,
+    searchTodos,
+    refetchTodos,
+  };
 };
 
 /**

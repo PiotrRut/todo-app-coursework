@@ -33,7 +33,9 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
         initialValues={{
           title: todo.title,
           body: todo.body,
-          deadline: dayjs(todo.deadline).format('YYYY-MM-DD'),
+          deadline: todo.deadline
+            ? dayjs(todo.deadline).format('YYYY-MM-DD')
+            : undefined,
           isCompleted: todo.deadline,
           tagId: todo.tag?.id,
         }}
@@ -72,7 +74,11 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
                 name="deadline"
                 label="Deadline (YYYY-MM-DD)"
                 marginBottom={30}
-                defaultValue={dayjs(todo.deadline).format('YYYY-MM-DD')}
+                defaultValue={
+                  todo.deadline
+                    ? dayjs(todo.deadline).format('YYYY-MM-DD')
+                    : undefined
+                }
                 mask="9999-99-99"
                 fullWidth
               />
@@ -91,7 +97,7 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
               )}
             </ButtonRow>
             <Button
-              name="create-tag"
+              name="edit-todo"
               type="submit"
               loading={loading}
               disabled={!values.title}

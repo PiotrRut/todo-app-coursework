@@ -70,7 +70,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
         <FlexRow>
           {tag && <TagItem noBottomMargin>{tag.title}</TagItem>}
           {deadline && <H3 renderAs="p">{dayjs(deadline).format('D/M/YY')}</H3>}
-          <div>
+          <div style={{ marginLeft: 'auto' }}>
             {!isComplete && (
               <ClearButton onClick={handleMarkCompleted} type="button">
                 <MdCheckCircle size={25} color="green" />

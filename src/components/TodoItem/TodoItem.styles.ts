@@ -11,7 +11,7 @@ export const TodoItemContainer = styled.div<{ isCompleted: boolean }>`
   margin-bottom: ${sizes[30]};
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   min-height: ${sizes[150]};
 
   @media (min-width: 920px) {
