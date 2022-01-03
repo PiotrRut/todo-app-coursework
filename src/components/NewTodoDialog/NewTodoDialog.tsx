@@ -2,6 +2,7 @@ import Button from '@components/buttons/Button';
 import Dialog from '@components/Dialog';
 import FormTextField from '@components/FormTextField';
 import { H2 } from '@components/Text';
+import { TodoRequestBody } from '@lib/domain/Todos';
 import { Form, Formik } from 'formik';
 import React, { FunctionComponent } from 'react';
 import { toast } from 'react-toastify';
@@ -11,7 +12,7 @@ import { StyledForm } from './NewTodoDialog.styles';
 import { validate } from './NewTodoDialog.validate';
 
 const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
-  const { onClose, loading, open, createTodo } = props;
+  const { onClose, loading, open, createTodo, refetchTodos } = props;
 
   return (
     <Dialog {...{ open, onClose }}>
@@ -20,23 +21,21 @@ const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
         initialValues={{
           title: '',
           body: '',
-          completeDate: '',
-          isCompleted: false,
+          deadline: '',
           tagId: '',
         }}
         validate={validate}
-        onSubmit={async ({ title, body, completeDate, tagId }) => {
+        onSubmit={async (values) => {
+          const cleanedUpValues = Object.fromEntries(
+            Object.entries(values).filter(
+              ([, v]) => v !== '' && v !== null && v !== undefined
+            )
+          );
+
           try {
-            await createTodo({
-              title,
-              body,
-              completeDate,
-              tag: {
-                id: tagId,
-              },
-              isCompleted: false,
-            });
-            toast.success(`"${title}" has been created successfully`);
+            await createTodo((cleanedUpValues as unknown) as TodoRequestBody);
+            toast.success(`"${values.title}" has been created successfully`);
+            await refetchTodos?.();
             onClose();
           } catch {
             toast.error('Something went wrong. Please try again later.');
@@ -63,7 +62,7 @@ const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
               />
 
               <FormTextField
-                name="completeDate"
+                name="deadline"
                 label="Deadline (YYYY-MM-DD)"
                 marginBottom={30}
                 mask="9999-99-99"

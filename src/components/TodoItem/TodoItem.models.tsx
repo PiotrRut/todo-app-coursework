@@ -1,4 +1,4 @@
-import { Todo } from '@lib/domain/Todos';
+import { Todo, TodoRequestBody } from '@lib/domain/Todos';
 
 export interface TodoItemProps {
   /** The to-do item to display */
@@ -10,7 +10,5 @@ export interface TodoItemProps {
   /** Loading state of the edit details request */
   loading: boolean;
   /** Function to change a to-dos details */
-  changeToDoDetails: (
-    todo: Partial<Omit<Todo, 'isCompleted'>>
-  ) => Promise<void>;
+  changeToDoDetails: (id: string, todo: TodoRequestBody) => Promise<void>;
 }

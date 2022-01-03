@@ -6,9 +6,9 @@ export type Todo = {
   /** Optional body (description) */
   body?: string;
   /** Date of completion (if the todo has a deadline) */
-  completeDate?: string;
+  deadline?: string;
   /** Boolean indicating whether the todo has been marked as done */
-  isCompleted: boolean;
+  isComplete: boolean;
   /** Optional tag/hashtag attached to the todo */
   tag?: {
     id?: string;
@@ -16,3 +16,10 @@ export type Todo = {
     description?: string;
   };
 };
+
+export interface TodoRequestBody {
+  title: string;
+  body?: string;
+  deadline?: string;
+  tagId?: string;
+}

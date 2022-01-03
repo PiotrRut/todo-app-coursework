@@ -5,12 +5,7 @@ import TagItem from '@components/TagItem';
 import { H1, H2, P } from '@components/Text';
 import TodoItem from '@components/TodoItem';
 import { useCreateTag, useGetAllTags } from '@lib/domain/Tags';
-import {
-  Todo,
-  useCreateTodo,
-  useEditTodos,
-  useGetTodos,
-} from '@lib/domain/Todos';
+import { useCreateTodo, useEditTodos, useGetTodos } from '@lib/domain/Todos';
 import useAuthenticatedRoute from '@lib/hooks/useAuthenticatedRoute';
 import { palette } from '@theme/palette';
 import { NextPage } from 'next';
@@ -29,7 +24,7 @@ const Dashboard: NextPage = () => {
   useAuthenticatedRoute();
 
   const { tags, refetchTags } = useGetAllTags();
-  const { refetchTodos } = useGetTodos();
+  const { refetchTodos, todos } = useGetTodos();
   const { newTag, loading } = useCreateTag();
   const {
     changeToDoStatus,
@@ -40,54 +35,6 @@ const Dashboard: NextPage = () => {
 
   const [tagDialogOpen, setTagDialogOpen] = useState(false);
   const [todoDialogOpen, setTodoDialogOpen] = useState(false);
-
-  // TEMPORARY
-  const items: Todo[] = [
-    {
-      id: '1',
-      title: 'Remind group about presentation',
-      body: 'Communicate on discord and WhatsApp',
-      isCompleted: true,
-      tag: {
-        id: '1',
-        title: 'university',
-      },
-      completeDate: '2018-04-04T00:00:00.000Z',
-    },
-    {
-      id: '1',
-      title: 'Book plane tickets to go on holiday',
-      body: 'British Airways or United Airlines',
-      isCompleted: false,
-      tag: {
-        id: '1',
-        title: 'personal',
-      },
-      completeDate: '2021-04-12T00:00:00.000Z',
-    },
-    {
-      id: '1',
-      title: 'Submit Haskell coursework',
-      body: 'Moodle has planned maintenance on Sunday',
-      isCompleted: false,
-      tag: {
-        id: '1',
-        title: 'university',
-      },
-      completeDate: '2022-12-09T00:00:00.000Z',
-    },
-    {
-      id: '1',
-      title: 'Tell Reece he is shit',
-      body: 'He knows it already but its okay',
-      isCompleted: false,
-      tag: {
-        id: '1',
-        title: 'boobs',
-      },
-      completeDate: '2022-01-04T00:00:00.000Z',
-    },
-  ];
 
   return (
     <Container>
@@ -115,7 +62,7 @@ const Dashboard: NextPage = () => {
         All tasks <span>📝</span>
       </H2>
       <TodosContainer>
-        {items.map((todo) => (
+        {todos?.map((todo) => (
           <TodoItem
             item={todo}
             completedAction={changeToDoStatus}
@@ -145,6 +92,7 @@ const Dashboard: NextPage = () => {
         onClose={() => setTodoDialogOpen(false)}
         loading={newTodoLoading}
         createTodo={createTodo}
+        refetchTodos={refetchTodos}
       />
     </Container>
   );

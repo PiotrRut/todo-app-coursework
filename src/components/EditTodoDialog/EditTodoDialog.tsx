@@ -33,19 +33,17 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
         initialValues={{
           title: todo.title,
           body: todo.body,
-          completeDate: dayjs(todo.completeDate).format('YYYY-MM-DD'),
-          isCompleted: todo.isCompleted,
+          deadline: dayjs(todo.deadline).format('YYYY-MM-DD'),
+          isCompleted: todo.deadline,
           tagId: todo.tag?.id,
         }}
         validate={validate}
-        onSubmit={async ({ title, body, completeDate, tagId }) => {
+        onSubmit={async ({ title, body, deadline, tagId }) => {
           await editTodo({
             title,
             body,
-            completeDate: completeDate && dayjs(completeDate).format(),
-            tag: {
-              id: tagId ?? '',
-            },
+            deadline: deadline && dayjs(deadline).format(),
+            tagId,
           });
         }}
       >
@@ -71,17 +69,17 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
               />
 
               <FormTextField
-                name="completeDate"
+                name="deadline"
                 label="Deadline (YYYY-MM-DD)"
                 marginBottom={30}
-                defaultValue={dayjs(todo.completeDate).format('YYYY-MM-DD')}
+                defaultValue={dayjs(todo.deadline).format('YYYY-MM-DD')}
                 mask="9999-99-99"
                 fullWidth
               />
             </StyledForm>
             <ButtonRow>
               <DeleteButton type="button">Delete</DeleteButton>
-              {todo.isCompleted && (
+              {todo.deadline && (
                 <MarkUncompletedButton
                   type="button"
                   onClick={async () => {

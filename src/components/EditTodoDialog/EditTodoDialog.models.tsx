@@ -1,10 +1,10 @@
-import { Todo } from '@lib/domain/Todos';
+import { Todo, TodoRequestBody } from '@lib/domain/Todos';
 
 export interface EditTodoDialogProps {
   /** To-do object to edit */
   todo: Todo;
   /** Method for writing the edited to-do to the db */
-  editTodo: (todo: Partial<Omit<Todo, 'isCompleted'>>) => Promise<void>;
+  editTodo: (todo: TodoRequestBody) => Promise<void>;
   /** Method for changing the status to un-completed */
   handleMarkUnCompleted: (id: string, isCompleted: boolean) => Promise<void>;
   /** Open state of the dialog */

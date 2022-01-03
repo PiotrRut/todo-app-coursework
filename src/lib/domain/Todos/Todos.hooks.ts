@@ -1,7 +1,7 @@
 import { ApiRoutes } from '@lib/constants';
 import useAxios from 'axios-hooks';
 
-import { Todo } from '.';
+import { Todo, TodoRequestBody } from '.';
 
 /**
  * This hook is used to fetch and return the list of todos from the DB,
@@ -52,12 +52,10 @@ export const useEditTodos = () => {
   };
 
   /** Used to change any of the other to-do details, except status */
-  const changeToDoDetails = async (
-    todo: Partial<Omit<Todo, 'isCompleted'>>
-  ) => {
+  const changeToDoDetails = async (id: string, todo: TodoRequestBody) => {
     await update({
       params: {
-        id: todo.id,
+        id,
       },
       data: todo,
     });
@@ -76,10 +74,7 @@ export const useEditTodos = () => {
  * as loading and error states for the requests.
  */
 export const useCreateTodo = () => {
-  const [{ loading, error }, newTodo] = useAxios<
-    unknown,
-    Partial<Omit<Todo, 'id'>>
-  >(
+  const [{ loading, error }, newTodo] = useAxios<unknown, TodoRequestBody>(
     {
       url: ApiRoutes.CreateTodo,
       method: 'POST',
@@ -89,7 +84,7 @@ export const useCreateTodo = () => {
     }
   );
 
-  const createTodo = async (todo: Partial<Omit<Todo, 'id'>>) => {
+  const createTodo = async (todo: TodoRequestBody) => {
     await newTodo({
       data: todo,
     });

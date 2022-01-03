@@ -1,7 +1,7 @@
 import EditTodoDialog from '@components/EditTodoDialog';
 import TagItem from '@components/TagItem';
 import { H3, P } from '@components/Text';
-import { Todo } from '@lib/domain/Todos';
+import { TodoRequestBody } from '@lib/domain/Todos';
 import dayjs from 'dayjs';
 import React, { FunctionComponent, useState } from 'react';
 import { MdCheckCircle, MdOutlineEditNote } from 'react-icons/md';
@@ -19,7 +19,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
     loading,
   } = props;
 
-  const { title, body, id, tag, isCompleted, completeDate } = item;
+  const { title, body, id, tag, isComplete, deadline } = item;
 
   const [todoDialogOpen, setTodoDialogOpen] = useState(false);
 
@@ -44,9 +44,9 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
     }
   };
 
-  const changeDetails = async (todo: Partial<Omit<Todo, 'isCompleted'>>) => {
+  const changeDetails = async (todo: TodoRequestBody) => {
     try {
-      await changeToDoDetails(todo);
+      await changeToDoDetails(item.id, todo);
       await refetchTodos?.();
       setTodoDialogOpen(false);
     } catch {
@@ -56,7 +56,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
 
   return (
     <>
-      <TodoItemContainer key={id} isCompleted={isCompleted}>
+      <TodoItemContainer key={id} isCompleted={isComplete}>
         <FlexRow>
           <H3 renderAs="p" marginBottom={20}>
             {title}
@@ -69,11 +69,9 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
         )}
         <FlexRow>
           {tag && <TagItem noBottomMargin>{tag.title}</TagItem>}
-          {completeDate && (
-            <H3 renderAs="p">{dayjs(completeDate).format('D/M/YY')}</H3>
-          )}
+          {deadline && <H3 renderAs="p">{dayjs(deadline).format('D/M/YY')}</H3>}
           <div>
-            {!isCompleted && (
+            {!isComplete && (
               <ClearButton onClick={handleMarkCompleted} type="button">
                 <MdCheckCircle size={25} color="green" />
               </ClearButton>
