@@ -5,7 +5,12 @@ import TagItem from '@components/TagItem';
 import { H1, H2, P } from '@components/Text';
 import TodoItem from '@components/TodoItem';
 import { useCreateTag, useGetAllTags } from '@lib/domain/Tags';
-import { useCreateTodo, useEditTodos, useGetTodos } from '@lib/domain/Todos';
+import {
+  useCreateTodo,
+  useDeleteTodo,
+  useEditTodos,
+  useGetTodos,
+} from '@lib/domain/Todos';
 import useAuthenticatedRoute from '@lib/hooks/useAuthenticatedRoute';
 import { palette } from '@theme/palette';
 import { NextPage } from 'next';
@@ -32,6 +37,7 @@ const Dashboard: NextPage = () => {
     loadingChangeTodos,
   } = useEditTodos();
   const { newTodoLoading, createTodo } = useCreateTodo();
+  const { deleteTask } = useDeleteTodo();
 
   const [tagDialogOpen, setTagDialogOpen] = useState(false);
   const [todoDialogOpen, setTodoDialogOpen] = useState(false);
@@ -69,6 +75,7 @@ const Dashboard: NextPage = () => {
             changeToDoDetails={changeToDoDetails}
             refetchTodos={refetchTodos}
             loading={loadingChangeTodos}
+            deleteTodo={deleteTask}
           />
         ))}
         <NewTodoButton onClick={() => setTodoDialogOpen(true)}>

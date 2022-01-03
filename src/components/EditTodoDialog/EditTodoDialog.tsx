@@ -24,6 +24,7 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
     editTodo,
     loading,
     handleMarkUnCompleted,
+    deleteToDo,
   } = props;
 
   return (
@@ -84,11 +85,13 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
               />
             </StyledForm>
             <ButtonRow>
-              <DeleteButton type="button">Delete</DeleteButton>
+              <DeleteButton type="button" onClick={() => deleteToDo(todo.id)}>
+                Delete
+              </DeleteButton>
               {todo.deadline && (
                 <MarkUncompletedButton
                   type="button"
-                  onClick={async () => {
+                  onClick={() => {
                     handleMarkUnCompleted(todo.id, false);
                   }}
                 >

@@ -7,6 +7,8 @@ export interface EditTodoDialogProps {
   editTodo: (todo: TodoRequestBody) => Promise<void>;
   /** Method for changing the status to un-completed */
   handleMarkUnCompleted: (id: string, isCompleted: boolean) => Promise<void>;
+  /**  Method for deleting a task */
+  deleteToDo: (id: string) => Promise<void>;
   /** Open state of the dialog */
   open: boolean;
   /** Method which will be triggered upon closing the dialog */

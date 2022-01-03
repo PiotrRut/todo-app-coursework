@@ -98,3 +98,26 @@ export const useCreateTodo = () => {
 
   return { newTodoLoading: loading, error, createTodo };
 };
+
+/** Hook used for deleting todo tasks */
+export const useDeleteTodo = () => {
+  const [{ loading, error }, deleteTodo] = useAxios(
+    {
+      url: ApiRoutes.DeleteTodo,
+      method: 'DELETE',
+    },
+    {
+      manual: true,
+    }
+  );
+
+  const deleteTask = async (id: string) => {
+    await deleteTodo({
+      params: {
+        id,
+      },
+    });
+  };
+
+  return { loading, error, deleteTask };
+};

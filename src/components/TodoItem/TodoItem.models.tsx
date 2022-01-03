@@ -7,6 +7,8 @@ export interface TodoItemProps {
   completedAction: (id: string, isCompleted: boolean) => Promise<void>;
   /** Function for refetching the list of todos */
   refetchTodos?: () => void;
+  /** Function for deleting to-dos */
+  deleteTodo: (id: string) => Promise<void>;
   /** Loading state of the edit details request */
   loading: boolean;
   /** Function to change a to-dos details */

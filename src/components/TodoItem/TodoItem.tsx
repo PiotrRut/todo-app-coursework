@@ -17,6 +17,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
     changeToDoDetails,
     refetchTodos,
     loading,
+    deleteTodo,
   } = props;
 
   const { title, body, id, tag, isComplete, deadline } = item;
@@ -49,6 +50,18 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
       await changeToDoDetails(item.id, todo);
       await refetchTodos?.();
       setTodoDialogOpen(false);
+      toast.success(`"${title}" has been updated`);
+    } catch {
+      toast.error(`Something went wrong, please try again`);
+    }
+  };
+
+  const deleteTask = async (id: string) => {
+    try {
+      await deleteTodo(id);
+      await refetchTodos?.();
+      setTodoDialogOpen(false);
+      toast.success(`"${title}" has been deleted`);
     } catch {
       toast.error(`Something went wrong, please try again`);
     }
@@ -90,6 +103,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
         todo={item}
         editTodo={changeDetails}
         loading={loading}
+        deleteToDo={deleteTask}
       />
     </>
   );
