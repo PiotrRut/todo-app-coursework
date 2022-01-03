@@ -3,8 +3,6 @@ import { Todo, TodoRequestBody } from '@lib/domain/Todos';
 export interface TodoItemProps {
   /** The to-do item to display */
   item: Todo;
-  /** Function which triggers after clicking the "mark as done" icon-button  */
-  completedAction: (id: string, isCompleted: boolean) => Promise<void>;
   /** Function for refetching the list of todos */
   refetchTodos?: () => void;
   /** Function for deleting to-dos */

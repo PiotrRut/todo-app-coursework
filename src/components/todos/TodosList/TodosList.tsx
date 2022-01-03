@@ -13,16 +13,19 @@ import NewTodoDialog from '../NewTodoDialog';
 import TodoItem from '../TodoItem';
 import { NewTodoButton, TodosContainer } from './TodosList.styles';
 
+/**
+ * This component holds the entirety of the to-dos list, which lives on the dashboard.
+ *
+ * All fetching logic lives here, and all hooks methods are derived from this component
+ * and passed on to their children. It also controls local state of the dialogs for to-do management.
+ */
 const TodosList: FunctionComponent = () => {
-  const [todoDialogOpen, setTodoDialogOpen] = useState(false);
   const { refetchTodos, todos } = useGetTodos();
-  const {
-    changeToDoStatus,
-    changeToDoDetails,
-    loadingChangeTodos,
-  } = useEditTodos();
+  const { changeToDoDetails, loadingChangeTodos } = useEditTodos();
   const { newTodoLoading, createTodo } = useCreateTodo();
   const { deleteTask } = useDeleteTodo();
+
+  const [todoDialogOpen, setTodoDialogOpen] = useState(false);
 
   return (
     <>
@@ -33,7 +36,6 @@ const TodosList: FunctionComponent = () => {
         {todos?.map((todo) => (
           <TodoItem
             item={todo}
-            completedAction={changeToDoStatus}
             changeToDoDetails={changeToDoDetails}
             refetchTodos={refetchTodos}
             loading={loadingChangeTodos}

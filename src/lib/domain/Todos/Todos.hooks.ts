@@ -45,18 +45,6 @@ export const useEditTodos = () => {
     }
   );
 
-  /** Used to mark a to-do as completed/uncompleted */
-  const changeToDoStatus = async (id: string, isCompleted: boolean) => {
-    await update({
-      params: {
-        id,
-      },
-      data: {
-        isCompleted,
-      },
-    });
-  };
-
   /** Used to change any of the other to-do details, except status */
   const changeToDoDetails = async (id: string, todo: TodoRequestBody) => {
     await update({
@@ -70,7 +58,6 @@ export const useEditTodos = () => {
   return {
     loadingChangeTodos: loading,
     error,
-    changeToDoStatus,
     changeToDoDetails,
   };
 };

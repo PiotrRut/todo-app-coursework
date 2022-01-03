@@ -8,9 +8,14 @@ import CreateTagDialog from '../CreateTagDialog';
 import TagItem from '../TagItem';
 import { TagsContainer } from './TagsList.styles';
 
+/**
+ * This component holds the entirety of the tags list, which lives on the dashboard.
+ *
+ * All fetching logic lives here, and all hooks methods are derived from this component
+ * and passed on to their children. It also controls local state of the dialogs for tag management.
+ */
 const TagsList: FunctionComponent = () => {
   const { tags, refetchTags } = useGetAllTags();
-
   const { newTag, loading } = useCreateTag();
 
   const [tagDialogOpen, setTagDialogOpen] = useState(false);

@@ -3,6 +3,7 @@ import Dialog from '@components/Dialog';
 import FormTextField from '@components/FormTextField';
 import { H2 } from '@components/Text';
 import { TodoRequestBody } from '@lib/domain/Todos';
+import dayjs from 'dayjs';
 import { Form, Formik } from 'formik';
 import React, { FunctionComponent } from 'react';
 import { toast } from 'react-toastify';
@@ -33,7 +34,11 @@ const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
           );
 
           try {
-            await createTodo((cleanedUpValues as unknown) as TodoRequestBody);
+            await createTodo({
+              ...(cleanedUpValues as TodoRequestBody),
+              deadline:
+                values.deadline && dayjs(values.deadline).utc(true).format(),
+            });
             toast.success(`"${values.title}" has been created successfully`);
             await refetchTodos?.();
             onClose();

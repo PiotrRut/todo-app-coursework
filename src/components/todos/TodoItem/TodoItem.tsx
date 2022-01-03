@@ -11,14 +11,7 @@ import { TodoItemProps } from './TodoItem.models';
 import { ClearButton, FlexRow, TodoItemContainer } from './TodoItem.styles';
 
 const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
-  const {
-    item,
-    completedAction,
-    changeToDoDetails,
-    refetchTodos,
-    loading,
-    deleteTodo,
-  } = props;
+  const { item, changeToDoDetails, refetchTodos, loading, deleteTodo } = props;
 
   const { title, body, id, tag, isComplete, deadline } = item;
 
@@ -26,7 +19,13 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
 
   const handleMarkCompleted = async () => {
     try {
-      await completedAction(id, true);
+      await changeToDoDetails(id, {
+        title,
+        body,
+        tagId: tag?.id,
+        isComplete: true,
+        deadline,
+      });
       await refetchTodos?.();
       toast.success(`"${title}" has been marked as completed`);
     } catch {
@@ -36,7 +35,13 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
 
   const handleMarkUnCompleted = async () => {
     try {
-      await completedAction(id, false);
+      await changeToDoDetails(id, {
+        title,
+        body,
+        tagId: tag?.id,
+        isComplete: false,
+        deadline,
+      });
       await refetchTodos?.();
       toast.success(`"${title}" has been moved to to-do`);
       setTodoDialogOpen(false);

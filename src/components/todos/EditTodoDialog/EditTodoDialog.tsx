@@ -2,6 +2,7 @@ import Button from '@components/buttons/Button';
 import Dialog from '@components/Dialog';
 import FormTextField from '@components/FormTextField';
 import { H2 } from '@components/Text';
+import { TodoRequestBody } from '@lib/domain/Todos';
 import dayjs from 'dayjs';
 import { Form, Formik } from 'formik';
 import React, { FunctionComponent } from 'react';
@@ -37,16 +38,21 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
           deadline: todo.deadline
             ? dayjs(todo.deadline).format('YYYY-MM-DD')
             : undefined,
-          isCompleted: todo.deadline,
+          isComplete: todo.isComplete,
           tagId: todo.tag?.id,
         }}
         validate={validate}
-        onSubmit={async ({ title, body, deadline, tagId }) => {
+        onSubmit={async (values) => {
+          const cleanedUpValues = Object.fromEntries(
+            Object.entries(values).filter(
+              ([, v]) => v !== '' && v !== null && v !== undefined
+            )
+          );
+
           await editTodo({
-            title,
-            body,
-            deadline: deadline && dayjs(deadline).format(),
-            tagId,
+            ...((cleanedUpValues as unknown) as TodoRequestBody),
+            deadline:
+              values.deadline && dayjs(values.deadline).utc(true).format(),
           });
         }}
       >

@@ -1,9 +1,13 @@
 import { AppRoutes } from '@lib/constants';
 import { useLocalStorage } from '@lib/hooks/useStorage';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import { useRouter } from 'next/router';
 import React, { createContext, useContext, useEffect } from 'react';
 
 import { AppContextValues, User } from './appContext.models';
+
+dayjs.extend(utc);
 
 const AppContext = createContext<AppContextValues>({
   userIdToken: undefined,

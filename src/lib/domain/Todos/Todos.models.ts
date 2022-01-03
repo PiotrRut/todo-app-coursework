@@ -22,4 +22,5 @@ export interface TodoRequestBody {
   body?: string;
   deadline?: string;
   tagId?: string;
+  isComplete?: boolean;
 }
