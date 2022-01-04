@@ -1,5 +1,6 @@
 import TagItem from '@components/tags/TagItem';
 import { H3, P } from '@components/Text';
+import { Tag } from '@lib/domain/Tags';
 import { TodoRequestBody } from '@lib/domain/Todos';
 import dayjs from 'dayjs';
 import React, { FunctionComponent, useState } from 'react';
@@ -86,7 +87,13 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
           </P>
         )}
         <FlexRow>
-          {tag && <TagItem noBottomMargin>{tag.title}</TagItem>}
+          {tag && (
+            <TagItem
+              tag={tag as Tag}
+              noBottomMargin
+              refetchTodos={refetchTodos}
+            />
+          )}
           {deadline && <H3 renderAs="p">{dayjs(deadline).format('D/M/YY')}</H3>}
           <div style={{ marginLeft: 'auto' }}>
             {!isComplete && (

@@ -2,7 +2,7 @@ import { ApiRoutes } from '@lib/constants';
 import useAxios from 'axios-hooks';
 import { toast } from 'react-toastify';
 
-import { NewTagRequestBody, Tag } from '.';
+import { NewTagRequestBody, Tag, TagEditBody } from '.';
 
 /**
  * This hook is used to create new tags
@@ -35,6 +35,33 @@ export const useCreateTag = () => {
   };
 
   return { loading, error, newTag };
+};
+
+/**
+ * This hook is used to edit existing tags
+ * @returns A function which takes a title and description for a tag
+ */
+export const useEditTag = () => {
+  const [{ loading, error }, edit] = useAxios<Tag[], TagEditBody>(
+    {
+      url: ApiRoutes.UpdateTag,
+      method: 'PATCH',
+    },
+    {
+      manual: true,
+    }
+  );
+
+  const editTag = async (id: string, tag: TagEditBody) => {
+    await edit({
+      params: {
+        id,
+      },
+      data: tag,
+    });
+  };
+
+  return { editTag, loadingEditTag: loading, error };
 };
 
 /**

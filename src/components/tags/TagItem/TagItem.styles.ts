@@ -1,10 +1,11 @@
 import { palette } from '@theme/palette';
-import { centredFlex } from '@theme/shortcuts';
+import { buttonReset, centredFlex } from '@theme/shortcuts';
 import { sizes } from '@theme/tokens';
 import styled from 'styled-components';
 
 export const TagItemContainer = styled.div<{ noBottomMargin: boolean }>`
   ${centredFlex}
+  justify-content: space-between;
   background-color: ${palette.secondary.main};
   padding: ${sizes[5]} ${sizes[10]};
   border-radius: ${sizes[15]};
@@ -12,4 +13,18 @@ export const TagItemContainer = styled.div<{ noBottomMargin: boolean }>`
   max-height: fit-content;
   margin-right: ${sizes[5]};
   margin-bottom: ${(p) => (p.noBottomMargin ? 0 : sizes[10])};
+`;
+
+export const TagItemAction = styled.button`
+  ${buttonReset}
+  ${centredFlex}
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  background-color: ${palette.secondary.dark};
+  margin: 0 ${sizes[5]};
+
+  &:last-child {
+    margin: 0;
+  }
 `;

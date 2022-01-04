@@ -1,6 +1,6 @@
 import PillButton from '@components/buttons/PillButton';
 import { H2 } from '@components/Text';
-import { useCreateTag, useGetAllTags } from '@lib/domain/Tags';
+import { useCreateTag, useEditTag, useGetAllTags } from '@lib/domain/Tags';
 import React, { FunctionComponent, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 
@@ -17,6 +17,7 @@ import { TagsContainer } from './TagsList.styles';
 const TagsList: FunctionComponent = () => {
   const { tags, refetchTags } = useGetAllTags();
   const { newTag, loading } = useCreateTag();
+  const { editTag, loadingEditTag } = useEditTag();
 
   const [tagDialogOpen, setTagDialogOpen] = useState(false);
 
@@ -27,7 +28,12 @@ const TagsList: FunctionComponent = () => {
       </H2>
       <TagsContainer>
         {tags?.map((tag) => {
-          return <TagItem>{tag.title}</TagItem>;
+          return (
+            <TagItem
+              {...{ editTag, loadingEditTag, refetchTags, tag }}
+              showActions
+            />
+          );
         })}
         <PillButton
           name="new-tag"

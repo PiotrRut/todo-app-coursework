@@ -5,26 +5,22 @@ import { H2, P } from '@components/Text';
 import { Form, Formik } from 'formik';
 import React, { FunctionComponent } from 'react';
 
-import { CreateTagDialogProps } from './CreateTagDialog.models';
-import { StyledForm } from './CreateTagDialog.styles';
+import { EditTagDialogProps } from './EditTagDialog.models';
+import { StyledForm } from './EditTagDialog.styles';
 
-/** Dialog for creating new tags - wraps around the `Dialog` component */
-const CreateTagDialog: FunctionComponent<CreateTagDialogProps> = (props) => {
-  const { newTag, refetchTags, loading, open, onClose } = props;
+const EditTagDialog: FunctionComponent<EditTagDialogProps> = (props) => {
+  const { editTag, open, onClose, loading, tag } = props;
 
   return (
     <Dialog {...{ onClose, open }}>
-      <H2 marginBottom={10}>Create a new tag</H2>
+      <H2 marginBottom={10}>Edit "#{tag.title}"</H2>
       <P marginBottom={20} color="gray">
-        Please provide a name and an optional description for your new tag.
+        Please provide a name and an optional description for your the tag.
       </P>
       <Formik
         initialValues={{ title: '', description: '' }}
-        onSubmit={async ({ title, description }) => {
-          await newTag(title, description);
-
-          await refetchTags();
-          onClose();
+        onSubmit={async (values) => {
+          await editTag?.(tag.id, values);
         }}
       >
         {({ values }) => (
@@ -48,13 +44,13 @@ const CreateTagDialog: FunctionComponent<CreateTagDialogProps> = (props) => {
               />
             </StyledForm>
             <Button
-              name="create-tag"
+              name="edit-tag"
               type="submit"
               loading={loading}
               disabled={!values.title}
               fullWidth
             >
-              Create tag
+              Edit tag
             </Button>
           </Form>
         )}
@@ -63,4 +59,4 @@ const CreateTagDialog: FunctionComponent<CreateTagDialogProps> = (props) => {
   );
 };
 
-export default CreateTagDialog;
+export default EditTagDialog;

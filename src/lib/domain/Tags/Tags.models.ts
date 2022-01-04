@@ -8,3 +8,5 @@ export type Tag = {
 };
 
 export type NewTagRequestBody = Omit<Tag, 'id'>;
+
+export type TagEditBody = NewTagRequestBody;

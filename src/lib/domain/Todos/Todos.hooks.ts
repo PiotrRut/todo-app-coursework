@@ -13,7 +13,7 @@ export const useGetTodos = () => {
   );
 
   const searchTodos = async (query: string, showCompleted: boolean) => {
-    refetchTodos({
+    await refetchTodos({
       params: {
         tagName: query,
         completed: showCompleted,
