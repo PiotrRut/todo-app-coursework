@@ -36,8 +36,9 @@ const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
           try {
             await createTodo({
               ...(cleanedUpValues as TodoRequestBody),
-              deadline:
-                values.deadline && dayjs(values.deadline).utc(true).format(),
+              deadline: values.deadline
+                ? dayjs(values.deadline).utc(true).format()
+                : undefined,
             });
             toast.success(`"${values.title}" has been created successfully`);
             await refetchTodos?.();

@@ -51,8 +51,9 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
 
           await editTodo({
             ...((cleanedUpValues as unknown) as TodoRequestBody),
-            deadline:
-              values.deadline && dayjs(values.deadline).utc(true).format(),
+            deadline: values.deadline
+              ? dayjs(values.deadline).utc(true).format()
+              : undefined,
           });
         }}
       >
@@ -94,7 +95,7 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
               <DeleteButton type="button" onClick={() => deleteToDo(todo.id)}>
                 Delete
               </DeleteButton>
-              {todo.deadline && (
+              {todo.deadline && !todo.isComplete && (
                 <MarkUncompletedButton
                   type="button"
                   onClick={() => {
