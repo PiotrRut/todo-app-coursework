@@ -1,4 +1,4 @@
-import { useDataContext } from '@lib/contexts/data/dataContext';
+import { useDataContext } from '@lib/contexts/data';
 import { TagEditBody } from '@lib/domain/Tags';
 import React, { FunctionComponent, useState } from 'react';
 import { MdFilterList, MdOutlineEditNote } from 'react-icons/md';

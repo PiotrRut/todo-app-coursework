@@ -1,5 +1,5 @@
 import { H2, P } from '@components/Text';
-import { useDataContext } from '@lib/contexts/data/dataContext';
+import { useDataContext } from '@lib/contexts/data';
 import { useCreateTodo, useDeleteTodo, useEditTodos } from '@lib/domain/Todos';
 import { palette } from '@theme/palette';
 import React, { FunctionComponent, useState } from 'react';

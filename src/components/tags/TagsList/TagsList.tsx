@@ -1,6 +1,6 @@
 import PillButton from '@components/buttons/PillButton';
 import { H2 } from '@components/Text';
-import { useDataContext } from '@lib/contexts/data/dataContext';
+import { useDataContext } from '@lib/contexts/data';
 import { useCreateTag, useEditTag } from '@lib/domain/Tags';
 import React, { FunctionComponent, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
