@@ -54,8 +54,6 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
     setOccupied(value ? value.length > 0 : false);
   }, [value]);
 
-  console.log({ value, occupied });
-
   if (mask) {
     return (
       <InputMask

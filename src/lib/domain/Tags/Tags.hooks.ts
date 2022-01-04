@@ -63,15 +63,3 @@ export const useEditTag = () => {
 
   return { editTag, loadingEditTag: loading, error };
 };
-
-/**
- * This hook is used to fetch and return the list of tags from the DB,
- * as well as loading and error states for the request.
- */
-export const useGetAllTags = () => {
-  const [{ data, loading, error }, refetchTags] = useAxios<Tag[]>(
-    ApiRoutes.GetTags
-  );
-
-  return { tags: data, loading, error, refetchTags };
-};

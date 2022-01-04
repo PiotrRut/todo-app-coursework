@@ -2,6 +2,7 @@ import Button from '@components/buttons/Button';
 import Dialog from '@components/Dialog';
 import FormTextField from '@components/FormTextField';
 import { H2, P } from '@components/Text';
+import { useDataContext } from '@lib/contexts/data/dataContext';
 import { Form, Formik } from 'formik';
 import React, { FunctionComponent } from 'react';
 
@@ -11,6 +12,7 @@ import { StyledForm } from './CreateTagDialog.styles';
 /** Dialog for creating new tags - wraps around the `Dialog` component */
 const CreateTagDialog: FunctionComponent<CreateTagDialogProps> = (props) => {
   const { newTag, refetchTags, loading, open, onClose } = props;
+  const { refetchAllTodos } = useDataContext();
 
   return (
     <Dialog {...{ onClose, open }}>
@@ -22,8 +24,8 @@ const CreateTagDialog: FunctionComponent<CreateTagDialogProps> = (props) => {
         initialValues={{ title: '', description: '' }}
         onSubmit={async ({ title, description }) => {
           await newTag(title, description);
-
-          await refetchTags();
+          await refetchAllTodos?.();
+          await refetchTags?.();
           onClose();
         }}
       >

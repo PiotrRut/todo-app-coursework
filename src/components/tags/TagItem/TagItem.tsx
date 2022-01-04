@@ -1,3 +1,4 @@
+import { useDataContext } from '@lib/contexts/data/dataContext';
 import { TagEditBody } from '@lib/domain/Tags';
 import React, { FunctionComponent, useState } from 'react';
 import { MdFilterList, MdOutlineEditNote } from 'react-icons/md';
@@ -14,16 +15,17 @@ const TagItem: FunctionComponent<TagItemProps> = ({
   refetchTags,
   loadingEditTag,
   editTag,
-  refetchTodos,
   tag,
 }) => {
   const [tagEditDialogOpen, setTagEditDialogOpen] = useState(false);
+
+  const { refetchAllTodos } = useDataContext();
 
   const editTagHandler = async (id: string, tag: TagEditBody) => {
     try {
       await editTag?.(id, tag);
       await refetchTags?.();
-      await refetchTodos?.();
+      await refetchAllTodos?.();
       toast.success('Tag changed successfully');
       setTagEditDialogOpen(false);
     } catch {

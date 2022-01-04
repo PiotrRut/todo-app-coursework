@@ -1,10 +1,6 @@
 import { H2, P } from '@components/Text';
-import {
-  useCreateTodo,
-  useDeleteTodo,
-  useEditTodos,
-  useGetTodos,
-} from '@lib/domain/Todos';
+import { useDataContext } from '@lib/contexts/data/dataContext';
+import { useCreateTodo, useDeleteTodo, useEditTodos } from '@lib/domain/Todos';
 import { palette } from '@theme/palette';
 import React, { FunctionComponent, useState } from 'react';
 import { BsPlusCircleDotted } from 'react-icons/bs';
@@ -20,10 +16,11 @@ import { NewTodoButton, TodosContainer } from './TodosList.styles';
  * and passed on to their children. It also controls local state of the dialogs for to-do management.
  */
 const TodosList: FunctionComponent = () => {
-  const { refetchTodos, todos } = useGetTodos();
   const { changeToDoDetails, loadingChangeTodos } = useEditTodos();
   const { newTodoLoading, createTodo } = useCreateTodo();
   const { deleteTask } = useDeleteTodo();
+
+  const { allTodos, refetchAllTodos } = useDataContext();
 
   const [todoDialogOpen, setTodoDialogOpen] = useState(false);
 
@@ -33,11 +30,11 @@ const TodosList: FunctionComponent = () => {
         All tasks <span>📝</span>
       </H2>
       <TodosContainer>
-        {todos?.map((todo) => (
+        {allTodos?.map((todo) => (
           <TodoItem
             item={todo}
             changeToDoDetails={changeToDoDetails}
-            refetchTodos={refetchTodos}
+            refetchTodos={refetchAllTodos}
             loading={loadingChangeTodos}
             deleteTodo={deleteTask}
           />
@@ -53,7 +50,7 @@ const TodosList: FunctionComponent = () => {
         onClose={() => setTodoDialogOpen(false)}
         loading={newTodoLoading}
         createTodo={createTodo}
-        refetchTodos={refetchTodos}
+        refetchTodos={refetchAllTodos}
       />
     </>
   );

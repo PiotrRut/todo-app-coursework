@@ -4,33 +4,6 @@ import useAxios from 'axios-hooks';
 import { Todo, TodoRequestBody } from '.';
 
 /**
- * This hook is used to fetch and return the list of todos from the DB,
- * as well as loading and error states for the request.
- */
-export const useGetTodos = () => {
-  const [{ data, loading, error }, refetchTodos] = useAxios<Todo[]>(
-    ApiRoutes.GetTodos
-  );
-
-  const searchTodos = async (query: string, showCompleted: boolean) => {
-    await refetchTodos({
-      params: {
-        tagName: query,
-        completed: showCompleted,
-      },
-    });
-  };
-
-  return {
-    todos: data,
-    loadingTodos: loading,
-    error,
-    searchTodos,
-    refetchTodos,
-  };
-};
-
-/**
  * This hooks provides methods for modifying todos in the DB, as well
  * as loading and error states for the requests.
  */
