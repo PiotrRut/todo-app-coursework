@@ -1,3 +1,4 @@
+import { H2 } from '@components/Text';
 import { palette } from '@theme/palette';
 import { buttonReset } from '@theme/shortcuts';
 import { sizes } from '@theme/tokens';
@@ -45,4 +46,11 @@ export const MarkUncompletedButton = styled.button`
   &:hover {
     background-color: ${palette.primary.dark};
   }
+`;
+
+export const DialogTitle = styled(H2)`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 90%;
 `;

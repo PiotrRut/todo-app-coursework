@@ -20,7 +20,7 @@ const TodosList: FunctionComponent = () => {
   const { newTodoLoading, createTodo } = useCreateTodo();
   const { deleteTask } = useDeleteTodo();
 
-  const { allTodos, refetchAllTodos } = useDataContext();
+  const { allTodos } = useDataContext();
 
   const [todoDialogOpen, setTodoDialogOpen] = useState(false);
 
@@ -34,7 +34,6 @@ const TodosList: FunctionComponent = () => {
           <TodoItem
             item={todo}
             changeToDoDetails={changeToDoDetails}
-            refetchTodos={refetchAllTodos}
             loading={loadingChangeTodos}
             deleteTodo={deleteTask}
           />
@@ -50,7 +49,6 @@ const TodosList: FunctionComponent = () => {
         onClose={() => setTodoDialogOpen(false)}
         loading={newTodoLoading}
         createTodo={createTodo}
-        refetchTodos={refetchAllTodos}
       />
     </>
   );

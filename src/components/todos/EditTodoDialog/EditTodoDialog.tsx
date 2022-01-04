@@ -1,7 +1,6 @@
 import Button from '@components/buttons/Button';
 import Dialog from '@components/Dialog';
 import FormTextField from '@components/FormTextField';
-import { H2 } from '@components/Text';
 import { TodoRequestBody } from '@lib/domain/Todos';
 import dayjs from 'dayjs';
 import { Form, Formik } from 'formik';
@@ -11,6 +10,7 @@ import { EditTodoDialogProps } from './EditTodoDialog.models';
 import {
   ButtonRow,
   DeleteButton,
+  DialogTitle,
   MarkUncompletedButton,
   StyledForm,
 } from './EditTodoDialog.styles';
@@ -30,7 +30,7 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
 
   return (
     <Dialog {...{ open, onClose }}>
-      <H2 marginBottom={25}>{todo.title}</H2>
+      <DialogTitle marginBottom={25}>Edit "{todo.title}"</DialogTitle>
       <Formik
         initialValues={{
           title: todo.title,
@@ -66,7 +66,6 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
                 marginBottom={10}
                 defaultValue={todo.title}
                 required
-                autoFocus
                 fullWidth
               />
 
@@ -95,7 +94,7 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
               <DeleteButton type="button" onClick={() => deleteToDo(todo.id)}>
                 Delete
               </DeleteButton>
-              {todo.deadline && !todo.isComplete && (
+              {todo.deadline && todo.isComplete && (
                 <MarkUncompletedButton
                   type="button"
                   onClick={() => {

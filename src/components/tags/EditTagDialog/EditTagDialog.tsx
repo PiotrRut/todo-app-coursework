@@ -18,7 +18,7 @@ const EditTagDialog: FunctionComponent<EditTagDialogProps> = (props) => {
         Please provide a name and an optional description for your the tag.
       </P>
       <Formik
-        initialValues={{ title: '', description: '' }}
+        initialValues={{ title: tag.title, description: tag.description }}
         onSubmit={async (values) => {
           await editTag?.(tag.id, values);
         }}
@@ -31,8 +31,8 @@ const EditTagDialog: FunctionComponent<EditTagDialogProps> = (props) => {
                 label="Name"
                 marginBottom={10}
                 maxLength={20}
+                defaultValue={tag.title}
                 required
-                autoFocus
                 fullWidth
               />
 
@@ -40,6 +40,7 @@ const EditTagDialog: FunctionComponent<EditTagDialogProps> = (props) => {
                 name="description"
                 label="Description"
                 marginBottom={30}
+                defaultValue={tag.description}
                 fullWidth
               />
             </StyledForm>
@@ -50,7 +51,7 @@ const EditTagDialog: FunctionComponent<EditTagDialogProps> = (props) => {
               disabled={!values.title}
               fullWidth
             >
-              Edit tag
+              Save changes
             </Button>
           </Form>
         )}

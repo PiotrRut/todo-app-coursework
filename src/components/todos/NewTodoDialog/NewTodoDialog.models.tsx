@@ -3,8 +3,6 @@ import { TodoRequestBody } from '@lib/domain/Todos';
 export interface NewTodoDialogProps {
   /** Method for writing the edited to-do to the db */
   createTodo: (todo: TodoRequestBody) => Promise<void>;
-  /** Method to refetch to-dos */
-  refetchTodos?: () => void;
   /** Open state of the dialog */
   open: boolean;
   /** Method which will be triggered upon closing the dialog */

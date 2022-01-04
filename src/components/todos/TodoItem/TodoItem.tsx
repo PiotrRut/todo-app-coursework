@@ -1,5 +1,6 @@
 import TagItem from '@components/tags/TagItem';
 import { H3, P } from '@components/Text';
+import { useDataContext } from '@lib/contexts/data';
 import { Tag } from '@lib/domain/Tags';
 import { TodoRequestBody } from '@lib/domain/Todos';
 import dayjs from 'dayjs';
@@ -12,11 +13,11 @@ import { TodoItemProps } from './TodoItem.models';
 import { ClearButton, FlexRow, TodoItemContainer } from './TodoItem.styles';
 
 const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
-  const { item, changeToDoDetails, refetchTodos, loading, deleteTodo } = props;
-
+  const { item, changeToDoDetails, loading, deleteTodo } = props;
   const { title, body, id, tag, isComplete, deadline } = item;
 
   const [todoDialogOpen, setTodoDialogOpen] = useState(false);
+  const { refetchAllTodos } = useDataContext();
 
   const handleMarkCompleted = async () => {
     try {
@@ -27,7 +28,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
         isComplete: true,
         deadline,
       });
-      await refetchTodos?.();
+      await refetchAllTodos?.();
       toast.success(`"${title}" has been marked as completed`);
     } catch {
       toast.error(`Something went wrong, please try again`);
@@ -43,7 +44,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
         isComplete: false,
         deadline,
       });
-      await refetchTodos?.();
+      await refetchAllTodos?.();
       toast.success(`"${title}" has been moved to to-do`);
       setTodoDialogOpen(false);
     } catch {
@@ -54,7 +55,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
   const changeDetails = async (todo: TodoRequestBody) => {
     try {
       await changeToDoDetails(item.id, todo);
-      await refetchTodos?.();
+      await refetchAllTodos?.();
       setTodoDialogOpen(false);
       toast.success(`"${title}" has been updated`);
     } catch {
@@ -65,7 +66,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
   const deleteTask = async (id: string) => {
     try {
       await deleteTodo(id);
-      await refetchTodos?.();
+      await refetchAllTodos?.();
       setTodoDialogOpen(false);
       toast.success(`"${title}" has been deleted`);
     } catch {
@@ -87,13 +88,7 @@ const TodoItem: FunctionComponent<TodoItemProps> = (props) => {
           </P>
         )}
         <FlexRow>
-          {tag && (
-            <TagItem
-              tag={tag as Tag}
-              noBottomMargin
-              refetchTodos={refetchTodos}
-            />
-          )}
+          {tag && <TagItem tag={tag as Tag} noBottomMargin />}
           {deadline && <H3 renderAs="p">{dayjs(deadline).format('D/M/YY')}</H3>}
           <div style={{ marginLeft: 'auto' }}>
             {!isComplete && (

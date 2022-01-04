@@ -12,19 +12,17 @@ import { TagItemAction, TagItemContainer } from './TagItem.styles';
 const TagItem: FunctionComponent<TagItemProps> = ({
   noBottomMargin = false,
   showActions = false,
-  refetchTags,
   loadingEditTag,
   editTag,
   tag,
 }) => {
   const [tagEditDialogOpen, setTagEditDialogOpen] = useState(false);
-
-  const { refetchAllTodos } = useDataContext();
+  const { refetchAllTodos, refetchAllTags } = useDataContext();
 
   const editTagHandler = async (id: string, tag: TagEditBody) => {
     try {
       await editTag?.(id, tag);
-      await refetchTags?.();
+      await refetchAllTags?.();
       await refetchAllTodos?.();
       toast.success('Tag changed successfully');
       setTagEditDialogOpen(false);

@@ -2,6 +2,7 @@ import Button from '@components/buttons/Button';
 import Dialog from '@components/Dialog';
 import FormTextField from '@components/FormTextField';
 import { H2 } from '@components/Text';
+import { useDataContext } from '@lib/contexts/data';
 import { TodoRequestBody } from '@lib/domain/Todos';
 import dayjs from 'dayjs';
 import { Form, Formik } from 'formik';
@@ -13,7 +14,8 @@ import { StyledForm } from './NewTodoDialog.styles';
 import { validate } from './NewTodoDialog.validate';
 
 const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
-  const { onClose, loading, open, createTodo, refetchTodos } = props;
+  const { onClose, loading, open, createTodo } = props;
+  const { refetchAllTodos } = useDataContext();
 
   return (
     <Dialog {...{ open, onClose }}>
@@ -41,7 +43,7 @@ const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
                 : undefined,
             });
             toast.success(`"${values.title}" has been created successfully`);
-            await refetchTodos?.();
+            await refetchAllTodos?.();
             onClose();
           } catch {
             toast.error('Something went wrong. Please try again later.');

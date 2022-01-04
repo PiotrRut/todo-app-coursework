@@ -11,8 +11,8 @@ import { StyledForm } from './CreateTagDialog.styles';
 
 /** Dialog for creating new tags - wraps around the `Dialog` component */
 const CreateTagDialog: FunctionComponent<CreateTagDialogProps> = (props) => {
-  const { newTag, refetchTags, loading, open, onClose } = props;
-  const { refetchAllTodos } = useDataContext();
+  const { newTag, loading, open, onClose } = props;
+  const { refetchAllTodos, refetchAllTags } = useDataContext();
 
   return (
     <Dialog {...{ onClose, open }}>
@@ -25,7 +25,7 @@ const CreateTagDialog: FunctionComponent<CreateTagDialogProps> = (props) => {
         onSubmit={async ({ title, description }) => {
           await newTag(title, description);
           await refetchAllTodos?.();
-          await refetchTags?.();
+          await refetchAllTags?.();
           onClose();
         }}
       >

@@ -18,10 +18,8 @@ import { TagsContainer } from './TagsList.styles';
 const TagsList: FunctionComponent = () => {
   const { newTag, loading } = useCreateTag();
   const { editTag, loadingEditTag } = useEditTag();
-
-  const { allTags, refetchAllTags } = useDataContext();
-
   const [tagDialogOpen, setTagDialogOpen] = useState(false);
+  const { allTags } = useDataContext();
 
   return (
     <>
@@ -30,13 +28,7 @@ const TagsList: FunctionComponent = () => {
       </H2>
       <TagsContainer>
         {allTags?.map((tag) => {
-          return (
-            <TagItem
-              {...{ editTag, loadingEditTag, tag }}
-              refetchTags={refetchAllTags}
-              showActions
-            />
-          );
+          return <TagItem {...{ editTag, loadingEditTag, tag }} showActions />;
         })}
         <PillButton
           name="new-tag"
@@ -51,7 +43,6 @@ const TagsList: FunctionComponent = () => {
 
       <CreateTagDialog
         newTag={newTag}
-        refetchTags={refetchAllTags}
         loading={loading}
         open={tagDialogOpen}
         onClose={() => {
