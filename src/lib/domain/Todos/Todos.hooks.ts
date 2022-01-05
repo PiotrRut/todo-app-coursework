@@ -4,7 +4,7 @@ import useAxios from 'axios-hooks';
 import { Todo, TodoRequestBody } from '.';
 
 /**
- * This hooks provides methods for modifying todos in the DB, as well
+ * This hook provides functions for modifying todos in the DB, as well
  * as loading and error states for the requests.
  */
 export const useEditTodos = () => {
@@ -36,7 +36,7 @@ export const useEditTodos = () => {
 };
 
 /**
- * This hooks provides methods for creating new todo tasks, as well
+ * This hook provides functions for creating new todo tasks, as well
  * as loading and error states for the requests.
  */
 export const useCreateTodo = () => {

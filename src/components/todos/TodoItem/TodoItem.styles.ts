@@ -2,7 +2,9 @@ import { palette } from '@theme/palette';
 import { sizes } from '@theme/tokens';
 import styled from 'styled-components';
 
-export const TodoItemContainer = styled.div<{ isCompleted: boolean }>`
+export const TodoItemContainer = styled.div<{
+  isCompleted: boolean;
+}>`
   background-color: ${(p) =>
     p.isCompleted ? '#222e25' : palette.primary.main};
   border-radius: ${sizes[10]};

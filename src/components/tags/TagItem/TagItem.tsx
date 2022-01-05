@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { useDataContext } from '@lib/contexts/data';
 import { TagEditBody } from '@lib/domain/Tags';
 import React, { FunctionComponent, useState } from 'react';
@@ -17,7 +18,14 @@ const TagItem: FunctionComponent<TagItemProps> = ({
   tag,
 }) => {
   const [tagEditDialogOpen, setTagEditDialogOpen] = useState(false);
-  const { refetchAllTodos, refetchAllTags } = useDataContext();
+  const {
+    refetchAllTodos,
+    refetchAllTags,
+    currentFilter,
+    setCurrentFilter,
+  } = useDataContext();
+
+  const filterApplied = currentFilter?.filterString === tag?.id;
 
   const editTagHandler = async (id: string, tag: TagEditBody) => {
     try {
@@ -33,11 +41,20 @@ const TagItem: FunctionComponent<TagItemProps> = ({
 
   return (
     <>
-      <TagItemContainer {...{ noBottomMargin }}>
+      <TagItemContainer {...{ noBottomMargin, filterApplied, showActions }}>
         #{tag.title}
         {showActions && (
           <>
-            <TagItemAction>
+            <TagItemAction
+              onClick={() => {
+                filterApplied
+                  ? setCurrentFilter?.(
+                      undefined,
+                      currentFilter?.includeCompleted
+                    )
+                  : setCurrentFilter?.(tag.id, currentFilter?.includeCompleted);
+              }}
+            >
               <MdFilterList size={15} color="white" />
             </TagItemAction>
 

@@ -33,3 +33,21 @@ export const NewTodoButton = styled.button`
     width: ${sizes[400]};
   }
 `;
+
+export const StyledRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: ${sizes[20]};
+`;
+
+export const FilterActions = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: ${sizes[10]};
+
+  p {
+    margin-left: ${sizes[5]};
+  }
+`;

@@ -6,7 +6,7 @@ import { useState } from 'react';
  *
  * @param key Key of the value to be stored in localStorage.
  * @param initialValue The initial value, used if the key does not exist yet.
- * @returns An array consisting of the value for the key, and a setter method.
+ * @returns An array consisting of the value for the key, and a setter function.
  */
 export function useLocalStorage<T>(
   key: string,

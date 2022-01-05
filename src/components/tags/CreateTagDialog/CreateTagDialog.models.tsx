@@ -1,10 +1,10 @@
 export interface CreateTagDialogProps {
   /** Loading state of the request */
   loading: boolean;
-  /** Method for adding a new tag */
+  /** Function for adding a new tag */
   newTag: (title: string, description: string) => Promise<void>;
   /** Indicates whether the dialog is open */
   open: boolean;
-  /** Method to pass to the close button */
+  /** Function to pass to the close button */
   onClose: () => void;
 }

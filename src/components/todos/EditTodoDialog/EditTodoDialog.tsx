@@ -64,6 +64,7 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
                 name="title"
                 label="Title"
                 marginBottom={10}
+                maxLength={80}
                 defaultValue={todo.title}
                 required
                 fullWidth

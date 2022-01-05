@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^0.1.5",
+    "@radix-ui/react-switch": "^0.1.4",
     "axios": "^0.24.0",
     "axios-hooks": "^3.0.0",
     "dayjs": "^1.10.7",

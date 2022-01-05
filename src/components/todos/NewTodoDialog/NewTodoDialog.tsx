@@ -57,6 +57,7 @@ const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
                 name="title"
                 label="Title"
                 marginBottom={10}
+                maxLength={80}
                 required
                 autoFocus
                 fullWidth

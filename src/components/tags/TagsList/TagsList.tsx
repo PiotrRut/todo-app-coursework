@@ -12,7 +12,7 @@ import { TagsContainer } from './TagsList.styles';
 /**
  * This component holds the entirety of the tags list, which lives on the dashboard.
  *
- * All fetching logic lives here, and all hooks methods are derived from this component
+ * All fetching logic lives here, and all hooks functions are derived from this component
  * and passed on to their children. It also controls local state of the dialogs for tag management.
  */
 const TagsList: FunctionComponent = () => {
@@ -40,7 +40,6 @@ const TagsList: FunctionComponent = () => {
           New tag
         </PillButton>
       </TagsContainer>
-
       <CreateTagDialog
         newTag={newTag}
         loading={loading}
