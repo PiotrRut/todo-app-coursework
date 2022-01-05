@@ -16,3 +16,9 @@ export const AppBarContainer = styled.div`
   height: ${sizes[50]};
   background-color: ${palette.primary.main};
 `;
+
+export const StyledRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;

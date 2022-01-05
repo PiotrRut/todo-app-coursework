@@ -28,6 +28,7 @@ export const StyledOverlay = styled(Dialog.Overlay)`
   position: fixed;
   background-color: ${palette.primary.dark};
   opacity: 0.85;
+  z-index: 101;
 `;
 
 export const StyledContent = styled(Dialog.Content)`
@@ -46,6 +47,7 @@ export const StyledContent = styled(Dialog.Content)`
     padding: ${sizes[40]};
     max-width: ${sizes[450]};
   }
+  z-index: 101;
 `;
 
 export const StyledCloseButton = styled(Dialog.Close)`
