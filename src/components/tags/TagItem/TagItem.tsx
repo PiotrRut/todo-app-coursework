@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import { useDataContext } from '@lib/contexts/data';
-import { TagEditBody } from '@lib/domain/Tags';
+import { TagEditBody, useDeleteTag } from '@lib/domain/Tags';
 import React, { FunctionComponent, useState } from 'react';
 import { MdFilterList, MdOutlineEditNote } from 'react-icons/md';
 import { toast } from 'react-toastify';
@@ -24,6 +24,7 @@ const TagItem: FunctionComponent<TagItemProps> = ({
     currentFilter,
     setCurrentFilter,
   } = useDataContext();
+  const { deleteTag } = useDeleteTag();
 
   const filterApplied = currentFilter?.filterString === tag?.id;
 
@@ -33,6 +34,17 @@ const TagItem: FunctionComponent<TagItemProps> = ({
       await refetchAllTags?.();
       await refetchAllTodos?.();
       toast.success('Tag changed successfully');
+      setTagEditDialogOpen(false);
+    } catch {
+      toast.error('Something went wrong, please try again');
+    }
+  };
+
+  const deleteTagHandler = async (id: string) => {
+    try {
+      await deleteTag?.(id);
+      await refetchAllTags?.();
+      toast.success('Tag deleted successfully');
       setTagEditDialogOpen(false);
     } catch {
       toast.error('Something went wrong, please try again');
@@ -71,6 +83,7 @@ const TagItem: FunctionComponent<TagItemProps> = ({
         loading={loadingEditTag}
         open={tagEditDialogOpen}
         onClose={() => setTagEditDialogOpen(false)}
+        deleteTag={deleteTagHandler}
       />
     </>
   );

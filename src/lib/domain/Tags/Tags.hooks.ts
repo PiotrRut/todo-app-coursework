@@ -63,3 +63,26 @@ export const useEditTag = () => {
 
   return { editTag, loadingEditTag: loading, error };
 };
+
+/** Hook used for deleting tags */
+export const useDeleteTag = () => {
+  const [{ loading, error }, tagDelete] = useAxios(
+    {
+      url: ApiRoutes.DeleteTag,
+      method: 'DELETE',
+    },
+    {
+      manual: true,
+    }
+  );
+
+  const deleteTag = async (id: string) => {
+    await tagDelete({
+      params: {
+        id,
+      },
+    });
+  };
+
+  return { loading, error, deleteTag };
+};

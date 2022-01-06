@@ -6,10 +6,10 @@ import { Form, Formik } from 'formik';
 import React, { FunctionComponent } from 'react';
 
 import { EditTagDialogProps } from './EditTagDialog.models';
-import { StyledForm } from './EditTagDialog.styles';
+import { DeleteButton, StyledForm } from './EditTagDialog.styles';
 
 const EditTagDialog: FunctionComponent<EditTagDialogProps> = (props) => {
-  const { editTag, open, onClose, loading, tag } = props;
+  const { editTag, open, onClose, loading, tag, deleteTag } = props;
 
   return (
     <Dialog {...{ onClose, open }}>
@@ -44,6 +44,11 @@ const EditTagDialog: FunctionComponent<EditTagDialogProps> = (props) => {
                 fullWidth
               />
             </StyledForm>
+
+            <DeleteButton onClick={() => deleteTag?.(tag.id)} type="button">
+              Delete tag
+            </DeleteButton>
+
             <Button
               name="edit-tag"
               type="submit"
