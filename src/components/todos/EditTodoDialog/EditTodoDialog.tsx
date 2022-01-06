@@ -66,7 +66,7 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
           });
         }}
       >
-        {({ values, setFieldValue, initialValues }) => (
+        {({ values, setFieldValue }) => (
           <Form>
             <StyledForm>
               <FormTextField
