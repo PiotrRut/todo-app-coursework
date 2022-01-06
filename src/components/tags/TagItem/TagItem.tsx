@@ -24,7 +24,7 @@ const TagItem: FunctionComponent<TagItemProps> = ({
     currentFilter,
     setCurrentFilter,
   } = useDataContext();
-  const { deleteTag } = useDeleteTag();
+  const { deleteTag, error: errorDeleteTag } = useDeleteTag();
 
   const filterApplied = currentFilter?.filterString === tag?.id;
 
@@ -47,7 +47,10 @@ const TagItem: FunctionComponent<TagItemProps> = ({
       toast.success('Tag deleted successfully');
       setTagEditDialogOpen(false);
     } catch {
-      toast.error('Something went wrong, please try again');
+      toast.error(
+        errorDeleteTag?.response?.data.message ??
+          'Something went wrong, please try again'
+      );
     }
   };
 
