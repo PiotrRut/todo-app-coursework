@@ -4,18 +4,29 @@ import FormTextField from '@components/FormTextField';
 import { H2 } from '@components/Text';
 import { useDataContext } from '@lib/contexts/data';
 import { TodoRequestBody } from '@lib/domain/Todos';
+import Paper from '@mui/material/Paper';
+import { palette } from '@theme/palette';
 import dayjs from 'dayjs';
 import { Form, Formik } from 'formik';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
 import { toast } from 'react-toastify';
 
 import { NewTodoDialogProps } from './NewTodoDialog.models';
-import { StyledForm } from './NewTodoDialog.styles';
+import {
+  StyledAutocomplete,
+  StyledForm,
+  StyledTextField,
+} from './NewTodoDialog.styles';
 import { validate } from './NewTodoDialog.validate';
 
 const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
   const { onClose, loading, open, createTodo } = props;
-  const { refetchAllTodos } = useDataContext();
+  const { refetchAllTodos, allTags } = useDataContext();
+
+  const tagOptions = useMemo(
+    () => allTags?.map((t) => ({ label: t.title, id: t.id })) ?? [],
+    [allTags]
+  );
 
   return (
     <Dialog {...{ open, onClose }}>
@@ -50,7 +61,7 @@ const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
           }
         }}
       >
-        {({ values }) => (
+        {({ values, setFieldValue, initialValues }) => (
           <Form>
             <StyledForm>
               <FormTextField
@@ -73,9 +84,41 @@ const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
               <FormTextField
                 name="deadline"
                 label="Deadline (YYYY-MM-DD)"
-                marginBottom={30}
+                marginBottom={10}
                 mask="9999-99-99"
                 fullWidth
+              />
+
+              <StyledAutocomplete
+                id="tagId"
+                disablePortal
+                options={tagOptions}
+                PaperComponent={({ children }) => (
+                  <Paper
+                    style={{
+                      background: palette.primary.light,
+                      color: 'white',
+                    }}
+                  >
+                    {children}
+                  </Paper>
+                )}
+                onChange={(e, value) =>
+                  setFieldValue(
+                    'tagId',
+                    // @ts-expect-error styled-component don't pass types properly
+                    value !== null ? value.id : initialValues.tagId
+                  )
+                }
+                renderInput={(params) => (
+                  <StyledTextField
+                    {...params}
+                    label="Tag"
+                    variant="standard"
+                    value={values.tagId}
+                    name="tagId"
+                  />
+                )}
               />
             </StyledForm>
             <Button
