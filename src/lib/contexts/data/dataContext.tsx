@@ -62,6 +62,16 @@ export const DataContextProvider: React.FunctionComponent = ({ children }) => {
     }
   }, [isSignedIn]);
 
+  const refetchAllTodos = async () => {
+    await refetchTodos({
+      params: {
+        tagFilter: currentFilter?.filterString && currentFilter?.filterString,
+        includeCompleted:
+          currentFilter?.includeCompleted && currentFilter?.includeCompleted,
+      },
+    });
+  };
+
   /**
    * A simple function for filtering to-dos. Takes two optional components
    * @param filterString tag-id to filter by
@@ -86,7 +96,7 @@ export const DataContextProvider: React.FunctionComponent = ({ children }) => {
   const values = {
     allTags: tags,
     allTodos: todos,
-    refetchAllTodos: refetchTodos,
+    refetchAllTodos,
     refetchAllTags: refetchTags,
     currentFilter,
     setCurrentFilter: filterTodos,
