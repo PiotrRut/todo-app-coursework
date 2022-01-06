@@ -1,22 +1,17 @@
+import AutoCompleteInput from '@components/AutoCompleteInput';
 import Button from '@components/buttons/Button';
 import Dialog from '@components/Dialog';
 import FormTextField from '@components/FormTextField';
 import { H2 } from '@components/Text';
 import { useDataContext } from '@lib/contexts/data';
 import { TodoRequestBody } from '@lib/domain/Todos';
-import Paper from '@mui/material/Paper';
-import { palette } from '@theme/palette';
 import dayjs from 'dayjs';
 import { Form, Formik } from 'formik';
 import React, { FunctionComponent, useMemo } from 'react';
 import { toast } from 'react-toastify';
 
 import { NewTodoDialogProps } from './NewTodoDialog.models';
-import {
-  StyledAutocomplete,
-  StyledForm,
-  StyledTextField,
-} from './NewTodoDialog.styles';
+import { StyledForm } from './NewTodoDialog.styles';
 import { validate } from './NewTodoDialog.validate';
 
 const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
@@ -89,20 +84,10 @@ const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
                 fullWidth
               />
 
-              <StyledAutocomplete
-                id="tagId"
-                disablePortal
+              <AutoCompleteInput
                 options={tagOptions}
-                PaperComponent={({ children }) => (
-                  <Paper
-                    style={{
-                      background: palette.primary.light,
-                      color: 'white',
-                    }}
-                  >
-                    {children}
-                  </Paper>
-                )}
+                label="Tag"
+                name="tagId"
                 onChange={(e, value) =>
                   setFieldValue(
                     'tagId',
@@ -110,15 +95,6 @@ const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
                     value !== null ? value.id : initialValues.tagId
                   )
                 }
-                renderInput={(params) => (
-                  <StyledTextField
-                    {...params}
-                    label="Tag"
-                    variant="standard"
-                    value={values.tagId}
-                    name="tagId"
-                  />
-                )}
               />
             </StyledForm>
             <Button

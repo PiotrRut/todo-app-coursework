@@ -1,10 +1,12 @@
+import AutoCompleteInput from '@components/AutoCompleteInput';
 import Button from '@components/buttons/Button';
 import Dialog from '@components/Dialog';
 import FormTextField from '@components/FormTextField';
+import { useDataContext } from '@lib/contexts/data';
 import { TodoRequestBody } from '@lib/domain/Todos';
 import dayjs from 'dayjs';
 import { Form, Formik } from 'formik';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
 
 import { EditTodoDialogProps } from './EditTodoDialog.models';
 import {
@@ -27,6 +29,13 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
     handleMarkUnCompleted,
     deleteToDo,
   } = props;
+
+  const { allTags } = useDataContext();
+
+  const tagOptions = useMemo(
+    () => allTags?.map((t) => ({ label: t.title, id: t.id })) ?? [],
+    [allTags]
+  );
 
   return (
     <Dialog {...{ open, onClose }}>
@@ -57,7 +66,7 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
           });
         }}
       >
-        {({ values }) => (
+        {({ values, setFieldValue, initialValues }) => (
           <Form>
             <StyledForm>
               <FormTextField
@@ -81,7 +90,7 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
               <FormTextField
                 name="deadline"
                 label="Deadline (YYYY-MM-DD)"
-                marginBottom={30}
+                marginBottom={10}
                 defaultValue={
                   todo.deadline
                     ? dayjs(todo.deadline).format('YYYY-MM-DD')
@@ -89,6 +98,20 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
                 }
                 mask="9999-99-99"
                 fullWidth
+              />
+
+              <AutoCompleteInput
+                options={tagOptions}
+                label="Tag"
+                name="tagId"
+                defaultValue={todo.tag?.title}
+                onChange={(e, value) =>
+                  setFieldValue(
+                    'tagId',
+                    // @ts-expect-error styled-component don't pass types properly
+                    value !== null ? value.id : null
+                  )
+                }
               />
             </StyledForm>
             <ButtonRow>
