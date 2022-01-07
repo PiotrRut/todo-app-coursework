@@ -118,7 +118,7 @@ const EditTodoDialog: FunctionComponent<EditTodoDialogProps> = (props) => {
               <DeleteButton type="button" onClick={() => deleteToDo(todo.id)}>
                 Delete
               </DeleteButton>
-              {todo.deadline && todo.isComplete && (
+              {todo.isComplete && (
                 <MarkUncompletedButton
                   type="button"
                   onClick={() => {
