@@ -3,7 +3,13 @@ import { Tag } from '@lib/domain/Tags';
 import { Todo } from '@lib/domain/Todos';
 import useIsSignedIn from '@lib/hooks/useIsSignedIn';
 import useAxios from 'axios-hooks';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 interface DataContextValues {
   allTodos?: Todo[];
@@ -62,7 +68,7 @@ export const DataContextProvider: React.FunctionComponent = ({ children }) => {
     }
   }, [isSignedIn]);
 
-  const refetchAllTodos = async () => {
+  const refetchAllTodos = useCallback(async () => {
     await refetchTodos({
       params: {
         tagFilter: currentFilter?.filterString && currentFilter?.filterString,
@@ -70,28 +76,28 @@ export const DataContextProvider: React.FunctionComponent = ({ children }) => {
           currentFilter?.includeCompleted && currentFilter?.includeCompleted,
       },
     });
-  };
+  }, [refetchTodos, currentFilter]);
 
   /**
    * A simple function for filtering to-dos. Takes two optional components
    * @param filterString tag-id to filter by
    * @param includeCompleted whether to include completed to-dos or not
    */
-  const filterTodos = async (
-    filterString?: string,
-    includeCompleted?: boolean
-  ) => {
-    setCurrentFilter({
-      filterString: filterString && filterString,
-      includeCompleted: includeCompleted && includeCompleted,
-    });
-    await refetchTodos({
-      params: {
-        tagFilter: filterString && filterString,
+  const filterTodos = useCallback(
+    async (filterString?: string, includeCompleted?: boolean) => {
+      setCurrentFilter({
+        filterString: filterString && filterString,
         includeCompleted: includeCompleted && includeCompleted,
-      },
-    });
-  };
+      });
+      await refetchTodos({
+        params: {
+          tagFilter: filterString && filterString,
+          includeCompleted: includeCompleted && includeCompleted,
+        },
+      });
+    },
+    [refetchTodos, setCurrentFilter, currentFilter]
+  );
 
   const values = {
     allTags: tags,
