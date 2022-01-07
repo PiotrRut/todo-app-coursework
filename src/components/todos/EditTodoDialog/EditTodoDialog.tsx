@@ -1,7 +1,7 @@
-import AutoCompleteInput from '@components/AutoCompleteInput';
 import Button from '@components/buttons/Button';
 import Dialog from '@components/Dialog';
-import FormTextField from '@components/FormTextField';
+import AutoCompleteInput from '@components/inputs/AutoCompleteInput';
+import FormTextField from '@components/inputs/FormTextField';
 import { useDataContext } from '@lib/contexts/data';
 import { TodoRequestBody } from '@lib/domain/Todos';
 import dayjs from 'dayjs';

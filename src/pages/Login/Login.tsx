@@ -1,5 +1,5 @@
 import Button from '@components/buttons/Button';
-import FormTextField from '@components/FormTextField';
+import FormTextField from '@components/inputs/FormTextField';
 import Link from '@components/Link';
 import { H1, P } from '@components/Text';
 import { useSignIn } from '@lib/auth/auth';
@@ -35,6 +35,7 @@ const Login: NextPage = () => {
                   label="Email address"
                   marginBottom={10}
                   autoComplete="new-email"
+                  fullWidth
                   autoFocus
                 />
 
@@ -43,6 +44,7 @@ const Login: NextPage = () => {
                   label="Password"
                   type="password"
                   autoComplete="new-password"
+                  fullWidth
                   marginBottom={30}
                 />
               </StyledForm>

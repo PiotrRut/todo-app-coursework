@@ -48,7 +48,7 @@ export const StyledInput = styled.input<{ fullWidth?: boolean }>`
     margin: 0;
   }
 
-  width: calc(100vw - ${sizes[40]});
+  width: 100%;
   height: ${sizes[50]};
   padding: ${sizes[25]} ${sizes[5]} ${sizes[3]} ${sizes[5]};
 

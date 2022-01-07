@@ -1,4 +1,4 @@
-import TextField from '@components/TextField';
+import TextField from '@components/inputs/TextField';
 import { useField } from 'formik';
 import React, { FunctionComponent } from 'react';
 

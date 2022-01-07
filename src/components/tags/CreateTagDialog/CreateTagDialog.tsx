@@ -1,6 +1,6 @@
 import Button from '@components/buttons/Button';
 import Dialog from '@components/Dialog';
-import FormTextField from '@components/FormTextField';
+import FormTextField from '@components/inputs/FormTextField';
 import { H2, P } from '@components/Text';
 import { useDataContext } from '@lib/contexts/data';
 import { Form, Formik } from 'formik';

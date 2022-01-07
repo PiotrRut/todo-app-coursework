@@ -1,5 +1,5 @@
 import Button from '@components/buttons/Button';
-import FormTextField from '@components/FormTextField';
+import FormTextField from '@components/inputs/FormTextField';
 import { H1 } from '@components/Text';
 import { useCreateAccount } from '@lib/auth/auth';
 import useRestrictedRoute from '@lib/hooks/useRestrictedRoute';
@@ -43,12 +43,14 @@ const CreateAccount: NextPage = () => {
                   label="First name"
                   autoFocus
                   required
+                  fullWidth
                   marginBottom={10}
                 />
                 <FormTextField
                   name="lastName"
                   label="Last name"
                   required
+                  fullWidth
                   marginBottom={10}
                 />
                 <FormTextField
@@ -56,6 +58,7 @@ const CreateAccount: NextPage = () => {
                   label="Email address"
                   autoComplete="new-email"
                   required
+                  fullWidth
                   marginBottom={10}
                 />
                 <FormTextField
@@ -64,6 +67,7 @@ const CreateAccount: NextPage = () => {
                   type="password"
                   autoComplete="new-password"
                   required
+                  fullWidth
                   marginBottom={30}
                 />
               </StyledForm>
