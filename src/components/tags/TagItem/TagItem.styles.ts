@@ -27,8 +27,8 @@ export const TagItemAction = styled.button`
   ${buttonReset}
   ${centredFlex}
   border-radius: 50%;
-  height: 25px;
-  width: 25px;
+  height: ${sizes[25]};
+  width: ${sizes[25]};
   background-color: ${palette.secondary.dark};
   margin: 0 ${sizes[5]};
 

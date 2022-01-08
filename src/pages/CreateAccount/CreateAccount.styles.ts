@@ -21,7 +21,7 @@ export const CreateAccountContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: ${palette.primary.main};
-  height: 500px;
+  height: ${sizes[500]};
   width: 100%;
   padding: ${sizes[50]} 0;
 
