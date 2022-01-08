@@ -12,7 +12,7 @@ export const PillButtonContainer = styled.button<PillButtonProps>`
   padding: ${sizes[5]} ${sizes[10]};
   border-radius: ${sizes[15]};
   font-size: ${sizes.base};
-  max-height: fit-content;
+  height: 35px;
   max-width: fit-content;
   box-shadow: 0 0 0 ${sizes[1]} ${palette.secondary.main} inset;
   margin: 0 ${sizes[5]} ${sizes[10]} 0;
