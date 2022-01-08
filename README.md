@@ -4,7 +4,7 @@ This repo contains the source code for the client implementation of the to-do ap
 
 The front end stack is React with Next.js. The back end is .NET based and available at [Reeceeboii/IN3046-Backend](https://github.com/Reeceeboii/IN3046-Backend) :globe_with_meridians:
 
-All of the components and UI elements are created internally with performance and accessibility in mind - some components, such as the generic `Dialog`, use [Radix's](https://www.radix-ui.com) primitives to base their bare root functionality off of.
+All of the components and UI elements, including typography components, inputs and more, are created internally with performance and accessibility in focus - some components, such as the generic `Dialog`, use [Radix's](https://www.radix-ui.com) primitives to base their bare root functionality off of. Those components are marked as such.
 
 ## Getting Started :horse_racing:
 

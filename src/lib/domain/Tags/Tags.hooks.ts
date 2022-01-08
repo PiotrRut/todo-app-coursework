@@ -6,7 +6,9 @@ import { NewTagRequestBody, Tag, TagEditBody } from '.';
 
 /**
  * This hook is used to create new tags
- * @returns A function which takes a title and description for a tag
+ *
+ * @returns A function which takes a title and description for a tag to create
+ * as well as loading and error state of the request
  */
 export const useCreateTag = () => {
   const [{ loading, error }, createTag] = useAxios<Tag[], NewTagRequestBody>(
@@ -39,7 +41,9 @@ export const useCreateTag = () => {
 
 /**
  * This hook is used to edit existing tags
- * @returns A function which takes a title and description for a tag
+ *
+ * @returns A function which takes a an id and a `Tag` object (stripped off the id)
+ * as well as loading and error state of the request
  */
 export const useEditTag = () => {
   const [{ loading, error }, edit] = useAxios<Tag[], TagEditBody>(
@@ -64,7 +68,12 @@ export const useEditTag = () => {
   return { editTag, loadingEditTag: loading, error };
 };
 
-/** Hook used for deleting tags */
+/**
+ * This hook is used to delete tags
+ *
+ * @returns A function which takes a an id of a tag
+ * as well as loading and error state of the request
+ */
 export const useDeleteTag = () => {
   const [{ loading, error }, tagDelete] = useAxios(
     {

@@ -4,8 +4,10 @@ import useAxios from 'axios-hooks';
 import { Todo, TodoRequestBody } from '.';
 
 /**
- * This hook provides functions for modifying todos in the DB, as well
- * as loading and error states for the requests.
+ * This hook is used to edit to-dos
+ *
+ * @returns A function which takes a `TodoRequestBody` object
+ * as well as loading and error state of the request
  */
 export const useEditTodos = () => {
   const [{ loading, error }, update] = useAxios<Todo[]>(
@@ -36,8 +38,10 @@ export const useEditTodos = () => {
 };
 
 /**
- * This hook provides functions for creating new todo tasks, as well
- * as loading and error states for the requests.
+ * This hook is used to create to-dos
+ *
+ * @returns A function which takes a `TodoRequestBody` object
+ * as well as loading and error state of the request
  */
 export const useCreateTodo = () => {
   const [{ loading, error }, newTodo] = useAxios<unknown, TodoRequestBody>(
@@ -59,7 +63,12 @@ export const useCreateTodo = () => {
   return { newTodoLoading: loading, error, createTodo };
 };
 
-/** Hook used for deleting todo tasks */
+/**
+ * This hook is used to delete to-dos
+ *
+ * @returns A function which takes an ID of the to-do
+ * as well as loading and error state of the request
+ */
 export const useDeleteTodo = () => {
   const [{ loading, error }, deleteTodo] = useAxios(
     {

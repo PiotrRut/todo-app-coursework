@@ -17,10 +17,6 @@ export type Todo = {
   };
 };
 
-export interface TodoRequestBody {
-  title: string;
-  body?: string;
-  deadline?: string;
+export type TodoRequestBody = Omit<Todo, 'id' | 'tag'> & {
   tagId?: string;
-  isComplete?: boolean;
-}
+};
