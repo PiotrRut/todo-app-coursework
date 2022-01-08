@@ -36,7 +36,7 @@ export const StyledContent = styled(Dialog.Content)`
   position: fixed;
   top: 50%;
   left: 50%;
-  max-width: 90vw;
+  width: 90vw;
   padding: ${sizes[20]};
   border-radius: ${sizes[5]};
 
