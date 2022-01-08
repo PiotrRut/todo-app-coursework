@@ -49,7 +49,7 @@ const TagItem: FunctionComponent<TagItemProps> = ({
     } catch {
       toast.error(
         errorDeleteTag?.response?.data.message ??
-          'Something went wrong, please try again'
+          'Tag cannot be deleted as it is attached to existing todos!'
       );
     }
   };
