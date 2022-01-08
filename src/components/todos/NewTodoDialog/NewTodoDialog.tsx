@@ -32,6 +32,7 @@ const NewTodoDialog: FunctionComponent<NewTodoDialogProps> = (props) => {
           body: '',
           deadline: '',
           tagId: '',
+          isComplete: false,
         }}
         validate={validate}
         onSubmit={async (values) => {
