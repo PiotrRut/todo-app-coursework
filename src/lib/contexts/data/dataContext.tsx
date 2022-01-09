@@ -68,6 +68,7 @@ export const DataContextProvider: React.FunctionComponent = ({ children }) => {
     }
   }, [isSignedIn]);
 
+  /** Re-fetches todos, while keeping any filters applied still applied */
   const refetchAllTodos = useCallback(async () => {
     await refetchTodos({
       params: {
