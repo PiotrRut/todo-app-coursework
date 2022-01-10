@@ -33,4 +33,4 @@ $ yarn new:page
 
 ## App interface
 
-![](https://user-images.githubusercontent.com/43642399/148678856-bf9572bb-9695-4ee2-953c-8f48449f34c1.mp4)
+https://user-images.githubusercontent.com/43642399/148678856-bf9572bb-9695-4ee2-953c-8f48449f34c1.mp4
