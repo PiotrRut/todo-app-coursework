@@ -1,5 +1,7 @@
 # IN3046: Cloud Computing Coursework :cloud_with_lightning:
 
+> :warning: **Please note:** The source code for this project is public as of 21/01/2022. I am not responsible in any way for any cases of academic misconduct, should someone choose to copy/plagiarise any parts of the code.
+
 This repo contains the source code for the client implementation of the to-do app for my team's Cloud Computing coursework.
 
 The front end stack is React with Next.js. The back end is .NET based and available at [Reeceeboii/IN3046-Backend](https://github.com/Reeceeboii/IN3046-Backend) :globe_with_meridians:
